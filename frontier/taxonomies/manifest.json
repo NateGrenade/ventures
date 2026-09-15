@@ -1,0 +1,22 @@
+{
+  "taxonomies": [
+    {
+      "name": "NAICS",
+      "file": "naics.csv",
+      "code_col": "code",
+      "label_col": "name",
+      "filter": { "col": "level", "equals": "6" },
+      "desc_col": null,
+      "_comment": "6-digit codes only. Levels 2-5 are roll-ups and too broad to sweep."
+    },
+    {
+      "name": "ONET",
+      "file": "onet-occupations.csv",
+      "code_col": "O*NET-SOC Code",
+      "label_col": "Title",
+      "desc_col": "Description",
+      "hint_chars": 400,
+      "_comment": "Descriptions carry into the cell hint field — they name the manual tasks directly."
+    }
+  ]
+}
