@@ -9,7 +9,7 @@ Kill most of what Phase 1 produced, and say precisely why.
 
 ## The failure mode this skill exists to prevent
 
-You and the sweep agent are the same model with the same priors. Left alone, "critique" degenerates into generic objections — *market size is unclear, incumbents likely exist, execution risk is high* — which sound rigorous, apply to everything, and filter nothing.
+You and the sweep agent may share a model and similar priors. Even different models can share blind spots. Left alone, "critique" degenerates into generic objections — *market size is unclear, incumbents likely exist, execution risk is high* — which sound rigorous, apply to everything, and filter nothing.
 
 **The rule: no criticism without a citation.** If you cannot name the incumbent, link the pricing page, or point at the substitute, you have not found a problem. You have had a feeling.
 
@@ -17,8 +17,12 @@ You and the sweep agent are the same model with the same priors. Left alone, "cr
 
 Load candidates:
 ```bash
-python scripts/list_ideas.py --status sandbox
+python3 scripts/list_ideas.py --status sandbox
 ```
+
+The listing defaults to 25 results. For an all-ideas request, repeat after processing each
+batch until none remain. Its footer is always printed; do not use nonempty output as
+proof that candidates exist. Read `calibration/rubric-notes.md` before the first evaluation.
 
 For each, a short pass. Kill immediately on any of:
 
@@ -28,7 +32,9 @@ For each, a short pass. Kill immediately on any of:
 - The problem statement is a vendor's framing in different words
 - Fewer than two independent sources
 
-Set `status: demoted` with a one-line reason. Target 50–70% elimination here, at a few cents each. Do not write a full critique for a triage kill.
+Set `status: demoted` with a one-line reason. A 50–70% elimination rate is a diagnostic
+expectation, not a quota. Let the evidence determine each outcome. Do not write a full
+critique for a triage kill or claim a cost without usage evidence.
 
 ## Step 2 — Grounded critique (expensive, survivors only)
 
@@ -44,7 +50,7 @@ For each survivor, append a `## Evaluation & Scrutiny Log` section addressing al
 
 ## Step 3 — The persistence question (mandatory)
 
-Answer: **why does this inefficiency still exist in 2026?** Choose exactly one tag and defend it in two or three sentences.
+Answer: **why does this inefficiency still exist today?** Choose exactly one tag and defend it in two or three sentences.
 
 | Tag | Meaning |
 |---|---|
@@ -65,7 +71,7 @@ Only `recently-unlocked` and `genuinely-hard` are eligible for promotion. This f
 Write rubric field values into frontmatter using the anchored scales in `references/rubric.md`. Read that file before your first scoring of a session.
 
 ```bash
-python scripts/score.py --slug <slug>
+python3 scripts/score.py --slug <slug>
 ```
 
 **Do not compute the weighted score yourself.** Models are inconsistent at arithmetic and drift toward generosity across a long batch.
@@ -78,7 +84,12 @@ Promotion requires **all** of:
 - A named buyer role with budget authority
 - Persistence tag of `recently-unlocked` or `genuinely-hard`
 - `tractability` scored 2 or above — software must be able to reach the workflow
-- Composite score above threshold (`score.py` reports pass/fail)
+- Composite score at or above the threshold (`score.py` reports eligibility)
+
+Verify source independence and support yourself: `source_count` counts type tags,
+`evidence_tier` is the best tag, and the script can pass duplicate, vendor-mixed, or
+unreachable evidence. Inspect two independent Tier 1/2 sources supporting the workflow;
+a script pass is necessary but not sufficient.
 
 Otherwise `status: demoted`. **Demoted ideas are never deleted.** They are the training data for frontier policy and for Nathan's calibration file.
 
@@ -90,4 +101,9 @@ If your promotion rate for this batch exceeds roughly 20%, treat that as a signa
 
 ## Concurrency
 
-Edit only the idea files you were assigned. Append to `calibration/` only via script. Never touch `INDEX.md` — run `python scripts/build_index.py` at the end of the batch and let it regenerate.
+Edit only assigned idea files. Nathan owns `calibration/` and `human_verdict`; do not
+author judgments for him. If his notes conflict with hard-coded gates or weights, report
+the conflict rather than silently changing the scoring code or pretending it implements
+an override. After all evaluations finish, the coordinator runs
+`python3 scripts/rollup_cells.py` and `python3 scripts/build_index.py`. A standalone
+scrutiny session acts as that coordinator. Workers do not generate shared outputs.

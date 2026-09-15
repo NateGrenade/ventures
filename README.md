@@ -8,7 +8,8 @@ only then spend real research budget.
 **The central design choice:** this does not search the internet for good ideas. Searching
 for "underserved markets" returns content written by vendors selling into those markets.
 Instead it walks a finite frontier — 1,938 NAICS industry codes and O\*NET occupations —
-with a coverage ledger, so progress is measurable and parallel agents never duplicate work.
+with a coverage ledger, so progress is measurable. One coordinator assigns disjoint
+cells; the ledger alone does not reserve work against overlapping batches.
 
 ---
 
@@ -17,23 +18,47 @@ with a coverage ledger, so progress is measurable and parallel agents never dupl
 ```bash
 git clone https://github.com/NateGrenade/ventures.git
 cd ventures
-pip install pyyaml
-python scripts/bootstrap.py      # idempotent; safe to re-run anytime
-python scripts/next_cells.py --count 8
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install pyyaml
+python3 scripts/bootstrap.py      # idempotent; safe to re-run anytime
+python3 scripts/next_cells.py --count 8
 ```
 
-The frontier is already seeded and committed, so a fresh clone needs no setup beyond
-PyYAML. Skills live in `.claude/skills/`, which Claude Code picks up automatically when
-run from this directory — nothing to install into `~/.claude`.
+The frontier is already seeded. Python 3 and PyYAML are the local script dependencies.
+Keep the project virtual environment out of version control.
 
-Run a batch:
+### Interactive Claude Code and Codex
 
-```bash
-mkdir -p logs
-CELL_COUNT=8 MAX_TURNS=30 ./scripts/driver.sh
-```
+Open this repository as the working project. Claude Code discovers `.claude/skills/`;
+Codex discovers the same five skills through relative links in `.agents/skills/`.
+`AGENTS.md` provides Codex's project-level guidance. Edit the canonical skills once.
 
-Use cron, not a daemon. A daemon has no natural stop condition and no audit trail.
+Examples:
+
+- "Use niche-batch to sweep 6 cells."
+- "Use niche-sweep on cell onet-43-3011.00."
+- "Use niche-scrutiny to evaluate all sandbox ideas."
+- "Use niche-falsify to test the promoted ideas."
+- "Use niche-dossier for <slug> with <declared budget>."
+
+Codex CLI also supports explicit `$niche-batch` skill mentions. Claude's `/sweep`,
+`/scrutinize`, `/falsify`, and named `niche-sweeper` wrapper remain Claude-specific;
+Codex uses the shared skills and available native worker tools. Batch sweeps default to
+24 cells, with at most six workers and fewer when the host has fewer slots. Sweep batches
+leave candidates at sandbox; scrutiny and falsification are separately requested stages.
+
+### Legacy shell driver
+
+`scripts/driver.sh` remains a Claude-only runner. It sweeps, verifies, runs scrutiny,
+regenerates outputs, and commits/pushes. It does not run falsification. It still uses the
+`python` command, so activate the virtual environment first. Do not use it concurrently
+with an interactive batch.
+
+This compatibility change does not adapt or harden that runner: `COST_CEILING` is only
+printed, worker failures are not fully aggregated, the sandbox-candidate check treats a
+summary footer as a nonempty result, and repository-wide staging can include unrelated
+work. These need script changes before relying on unattended operation with either agent.
 
 ---
 
@@ -41,20 +66,18 @@ Use cron, not a daemon. A daemon has no natural stop condition and no audit trai
 
 | Skill | Phase | When it runs | Writes |
 |---|---|---|---|
+| `niche-batch` | Phase 1 orchestration | Explicit batch request | Assignments, coordinated outputs |
 | `niche-sweep` | 1 — evidence gathering | Every batch, once per cell | `ideas/*.md`, ledger |
-| `niche-scrutiny` | 2 — triage + sourced critique | Every batch, over `sandbox` | Idea frontmatter, scrutiny logs |
-| `niche-falsify` | 3 — cheap disconfirmation | On promotion | Falsification logs, `worklist.md` |
+| `niche-scrutiny` | 2 — triage + sourced critique | Requested review of `sandbox` | Idea frontmatter, scrutiny logs |
+| `niche-falsify` | 3 — cheap disconfirmation | Requested tests of promoted ideas | Falsification logs, `worklist.md` |
 | `niche-dossier` | 4 — deep research | Only when you name an idea | `dossiers/<slug>/` |
 
-Four skills rather than one, for two reasons. Context: a sweep agent loads ~90 lines and
-never sees the scoring rubric or the dossier structure, which is the difference between a
-batch costing a few dollars and costing thirty. Triggering: one skill described as "find,
-evaluate, test, and research niches" matches every query and therefore discriminates
-between none.
+Four phase skills plus the batch orchestrator keep discovery, evaluation, testing, and
+deep research separate. Each invocation loads only the relevant instructions and references.
 
-Status lifecycle: `sandbox → demoted | promoted → falsified | validated → dossier`.
-Nothing is ever deleted. Demoted and falsified ideas are how the pipeline learns what your
-promotions are systematically wrong about.
+Status lifecycle: `sandbox → demoted | promoted → falsified | validated`.
+Dossiers are directories for selected validated ideas; `dossier` is not an indexed status.
+Duplicates use `status: duplicate`. Preserve the records of failed and duplicate ideas.
 
 ---
 
@@ -73,7 +96,9 @@ calibration/
   rubric-notes.md      hand-written; overrides the rubric
 worklist.md            human-executed tests, pre-scripted
 scripts/               all deterministic work
-.claude/skills/        the four skills, versioned with the repo
+.claude/skills/        five canonical skills, versioned with the repo
+.agents/skills/        relative links exposing those same skills to Codex
+AGENTS.md              Codex project guidance
 INDEX.md               GENERATED — never edit by hand
 ```
 
@@ -89,30 +114,34 @@ INDEX.md               GENERATED — never edit by hand
 | `dedup.py` | Containment check before write (`--check`); corpus pair audit (`--sweep`) |
 | `verify_sources.py` | Fetches every cited URL, marks dead ones, computes `evidence_tier` |
 | `score.py` | Weighted composite from anchored values + hard-gate checks |
-| `ledger_append.py` | Appends a sweep record, rolls up cell counters |
+| `ledger_append.py` | Appends a sweep record without rewriting cells |
+| `rollup_cells.py` | Recomputes cell counters after workers finish |
 | `list_ideas.py` | Lists by status, so agents don't glob the corpus into context |
 | `build_index.py` | Regenerates `INDEX.md` |
 | `cost_report.py` | Yield-per-dollar by cell and taxonomy |
-| `driver.sh` | Batch orchestration |
+| `driver.sh` | Legacy Claude-only sweep + scrutiny runner; see limitations above |
 
 Anything a model could get wrong by being inconsistent lives here rather than in a prompt:
-dedup thresholds, source tiering, score arithmetic, coverage bookkeeping. Agents emit
-structured values; scripts decide what those values mean.
+dedup thresholds, score arithmetic, and coverage bookkeeping. Source verification still
+has limits: it checks reachability and tags, not claim support or independence. Scrutiny
+must inspect the qualifying sources; a script pass alone does not establish those facts.
 
 ---
 
 ## Concurrency contract
 
-Why parallel agents don't collide:
+Use one coordinator per shared checkout. Select assignments before spawning workers;
+`next_cells.py` does not reserve cells against another coordinator.
 
-1. Each agent writes only `ideas/<its-own-slug>.md` — never another agent's file, except
-   appending under `## Additional Evidence`.
-2. Shared state is append-only JSONL. Appends merge cleanly in git; edits to a shared
-   markdown index do not.
-3. `INDEX.md` is generated. No human and no model edits it.
-4. Deterministic passes run after `wait`, single-threaded, in the driver.
-
-Past roughly eight concurrent agents, switch to git worktrees per agent.
+1. Workers create only their own new idea files and never overwrite existing slugs.
+2. Workers return near-matches and proposed evidence; the coordinator updates existing
+   ideas after workers finish.
+3. Workers append sweep records with `ledger_append.py`. The coordinator resolves
+   duplicates, verifies affected sources, then runs rollup and index generation serially.
+4. Use up to six workers, bounded by the host's available capacity. Prefer a shared
+   checkout; isolated worktrees require explicit collection and reconciliation of outputs.
+5. Preserve pre-existing edits. Commit/push within task authorization and stage only the
+   task's changes, including selective staging for shared files.
 
 ---
 
@@ -128,8 +157,9 @@ judgment and the scoring function, which defeats the point.
 
 The metric to watch, from `cost_report.py`: promotion rate rising over successive batches
 *without* a matching rise in your acceptance rate. That means the critic has gone soft — a
-known drift mode. Raise the threshold in `.claude/skills/niche-scrutiny/references/rubric.md`
-and date the change at the bottom of that file.
+known drift mode. Decide whether to retune after reviewing the evidence. For an authorized
+threshold change, update `THRESHOLD` in `scripts/score.py` and synchronize the rubric text
+in `.claude/skills/niche-scrutiny/references/rubric.md`, with a dated explanation.
 
 ---
 

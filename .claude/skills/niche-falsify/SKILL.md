@@ -38,7 +38,11 @@ The dead-startup check is the most underrated. Someone has usually tried. Findin
 
 ## Step 3 — Execute what you can, queue what you cannot
 
-**Automatable tests you run yourself.** Record each in the Falsification Log:
+**Run research tests yourself.** Sending messages, posting questions, or placing calls
+requires Nathan's authorization for that action; otherwise prepare them in `worklist.md`.
+When evaluating all promoted ideas, account for the 25-result default in `list_ideas.py`
+and track visited slugs so ideas awaiting human tests do not create an endless loop.
+Record each test in the Falsification Log:
 
 ```markdown
 ### Test: job-board sweep for manual reconciliation roles
@@ -64,9 +68,14 @@ The pre-registered falsifying answer matters. Without it, any call outcome gets 
 - `status: promoted` (unchanged) — the decisive test is human-executed and still queued. Leave it pending; do not promote on automatable tests alone when a call was the real test.
 
 ```bash
-python scripts/score.py --slug <slug> --recompute
-python scripts/build_index.py
+python3 scripts/score.py --slug <slug> --recompute
+# After all assigned ideas are processed and workers have finished:
+python3 scripts/rollup_cells.py
+python3 scripts/build_index.py
 ```
+
+If multiple workers are used, return worklist entries to the coordinator for one serial
+update. Only the coordinator generates rollups and the index.
 
 ## Honesty pressure
 

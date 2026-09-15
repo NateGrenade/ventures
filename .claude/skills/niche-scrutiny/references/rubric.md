@@ -82,7 +82,10 @@ reasons the work persists, but they make it unautomatable rather than promising 
 
 Weighted sum, normalized to 0–100 by `score.py`.
 
-- **Promotion threshold: 62**, *and* all hard gates must pass.
+- **Promotion threshold: 62** (inclusive), *and* all hard gates must pass.
+- The operative threshold and weights live in `scripts/score.py`; this document explains
+  them. An authorized threshold change must update both files. Editing prose alone does
+  not change computed eligibility.
 - Hard gates: two or more independent Tier 1/2 sources; a named buyer role; an eligible
   persistence tag; **`tractability` at 2 or above**.
 - Scoring above threshold while failing a hard gate is a demote. The gates are not tiebreakers.

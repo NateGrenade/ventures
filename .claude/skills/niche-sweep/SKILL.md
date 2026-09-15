@@ -9,17 +9,21 @@ Gather evidence of operational pain inside one assigned frontier cell. Emit cand
 
 ## Preconditions — check these first, fail fast
 
-1. `frontier/cells.jsonl` exists. If not, stop and tell Nathan to run `python scripts/bootstrap.py`.
-2. You have been assigned **exactly one** `cell_id`. If none was given, run `python scripts/next_cells.py --count 1` and take the result.
+1. `frontier/cells.jsonl` exists. If not, stop and tell Nathan to run `python3 scripts/bootstrap.py`.
+2. Sweep **exactly one** `cell_id`. Workers use the coordinator's assignment. For an explicit standalone one-cell request without an ID, select one with `python3 scripts/next_cells.py --count 1`. For an unspecified batch or general hunt, use `niche-batch`.
 3. Load your cell's context:
    ```bash
-   python scripts/show_cell.py <cell_id>
+   python3 scripts/show_cell.py <cell_id>
    ```
    Never read `frontier/cells.jsonl` directly — it is ~1,900 lines and would dwarf everything else in your context.
 
    O*NET cells carry a `hint` field containing the occupation's official task description. **Read it and mine it.** It is a government-written list of the manual work this occupation performs, which is exactly what you are hunting; treat its verbs as your first round of search queries.
 
-Do not sweep more than one cell per invocation. Do not expand outside the assigned cell, even if a neighbouring sector looks more promising — note it in the ledger instead.
+One cell per agent. Do not expand outside the assigned cell, even if a neighbouring sector looks more promising — note it in the ledger instead.
+
+This skill sweeps a single cell. To sweep many cells, the `niche-batch` skill fans out one
+`niche-sweeper` subagent per cell and each of those follows this skill. If you were handed
+several cells directly, use `niche-batch` instead of working through them in series.
 
 ## The central prohibition
 
@@ -76,9 +80,9 @@ For each candidate:
 
 1. **Dedup before writing.**
    ```bash
-   python scripts/dedup.py --check "<proposed title>" --summary "<one-line problem statement>"
+   python3 scripts/dedup.py --check "<proposed title>" --summary "<one-line problem statement>"
    ```
-   On a reported near match, do not create a new file. Append your evidence to the named canonical file under a `## Additional Evidence` heading and stop there.
+   On a reported near-match, do not create a new file. A batch worker returns the match and proposed sourced evidence to the coordinator without editing the canonical file. In a standalone sweep with exclusive ownership, append under `## Additional Evidence` and re-verify that idea. Never overwrite an existing slug.
 
 2. **Write `ideas/<slug>.md`** using the template in `references/evidence-sources.md`. Required frontmatter:
 
@@ -92,7 +96,7 @@ For each candidate:
    job: <one line — see "One job per file" below. REQUIRED>
    split_from: null         # set only when splitting one finding into several files
    evidence_tier: null      # computed, leave null
-   scores: {}               # populated by score.py, never by hand
+   scores: {}               # left empty in sweep; scrutiny writes anchored dimension values
    human_verdict: null
    cost_usd: null
    ---
@@ -114,13 +118,13 @@ If you cannot write **one** such sentence covering your whole finding, you have 
 
 When you split one finding into several files:
 
-- Give every resulting file the same `split_from: <original-slug>` value. This exempts the set from being auto-merged back together by `dedup.py`.
+- Give every resulting file the same `split_from: <original-slug>` value. The corpus audit (`dedup.py --sweep`) skips pairs with the same nonempty lineage. The pre-write `--check` has no lineage argument; review any match against the distinct buyer/job rule and record why a deliberate split remains separate.
 - Copy each source into whichever files it actually supports. A source can support more than one.
 - Run `dedup.py --check` for each file separately.
 
 The `job:` line is also what `dedup.py` compares against — not your prose. Write it as plainly as possible, and name the systems rather than the industry. Sector vocabulary is shared by genuinely distinct ideas and absent from genuinely identical ones, so an idea framed as "municipal utility billing reconciliation" hides both the duplicate in the corpus and the distinct idea sitting next to it.
 
-3. **Never edit `INDEX.md`.** It is generated. Never edit another agent's idea file except to append evidence under `## Additional Evidence`.
+3. **Never edit `INDEX.md` by hand.** In a batch, edit only new idea files you own; the coordinator handles additions to existing files after workers finish.
 
 ## Source discipline
 
@@ -128,19 +132,40 @@ Every factual claim carries a URL and a source-type tag. Claims you cannot sourc
 
 After writing, run:
 ```bash
-python scripts/verify_sources.py --slug <slug>
+python3 scripts/verify_sources.py --slug <slug>
 ```
-This fetches every URL, confirms it resolves, and computes `evidence_tier`. Unreachable citations are stripped and their claims downgraded. Do not hand-edit `evidence_tier`.
+This checks URLs and computes tier/count fields from source-type tags. It marks failed
+URLs `[UNREACHABLE]`; it does not remove their claims, prove their content, establish
+independence, or reliably exclude those tags from its counts. Label unsupported claims
+explicitly and report failures. Do not hand-edit computed tier/count fields. Never use
+`--offline` to claim sources were verified.
 
 ## Closing the sweep
 
 Append one ledger record:
 ```bash
-python scripts/ledger_append.py --cell <cell_id> --agent <agent_id> \
-  --stubs <n> --merged <n> --cost <usd> --note "<optional observation>"
+python3 scripts/ledger_append.py --cell <cell_id> --agent <agent_id> \
+  --stubs <n> --merged <n> \
+  --sources <comma-separated source types that actually yielded> \
+  --note "<optional observation>"
 ```
 
-Use the note field for anything the frontier policy should know: a taxonomy cell that was too broad, a source type that worked unusually well, an adjacent cell worth queueing.
+Pass `--cost <usd>` only for a known or explicitly labeled estimated cost. If cost is
+unavailable, omit it and put `cost unknown` in the note: the current script defaults to
+zero, which must not be described as measured free usage. Count actual merges only;
+worker-reported matches awaiting resolution are not completed merges.
+
+`--sources` records which source types produced usable evidence in this cell — e.g.
+`job-posting,procurement`. Record only what actually yielded; omit types you tried and got
+nothing from. This is the observation that tells the pipeline, after enough cells, which
+kinds of digging are worth the tokens.
+
+Use the note field for anything else the frontier policy should know: a taxonomy cell that was too broad, an adjacent cell worth queueing, a tool that failed.
+
+`ledger_append.py` appends sweep records without rewriting cell counters. In a batch,
+workers do not run `rollup_cells.py`, `build_index.py`, or git; the coordinator handles
+aggregate work after completion. For a standalone sweep with no other active workers,
+run rollup and index generation after recording the sweep.
 
 Then stop. Do not score, critique, or research your own candidates — that is Phase 2's job, and doing it here defeats the separation.
 

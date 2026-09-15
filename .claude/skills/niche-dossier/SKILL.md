@@ -69,7 +69,14 @@ Unmarked prose is read as `[VERIFIED]` by a future reader, including future Nath
 
 ## Budget discipline
 
-Check consumption against the declared ceiling at each file boundary. On breach: stop, write current state into `README.md`, list what remains unresearched in `open-questions.md`, and hand back. Do not silently overrun, and do not thin out later sections to fit — a half-finished dossier with an honest boundary is more useful than a complete one that got vague at the end.
+Before research, establish whether the host exposes usage and can enforce the declared
+ceiling. Do not promise hard token or dollar enforcement from a prompt alone. If the
+requested hard limit cannot be enforced, resolve an alternative with Nathan first.
+Distinguish estimated API-equivalent cost from actual billing or subscription usage.
+Use limits already agreed in the conversation without asking again.
+
+Check measured consumption against the declared ceiling at each file boundary and before
+starting another substantial section. File-boundary checks alone do not enforce a hard cap. On breach: stop, write current state into `README.md`, list what remains unresearched in `open-questions.md`, and hand back. Do not silently overrun, and do not thin out later sections to fit — a half-finished dossier with an honest boundary is more useful than a complete one that got vague at the end.
 
 ## Hand-off
 
@@ -77,5 +84,5 @@ Finish with a `## Bottom Line` section in `README.md`: the two or three things t
 
 Then:
 ```bash
-python scripts/build_index.py
+python3 scripts/build_index.py
 ```
