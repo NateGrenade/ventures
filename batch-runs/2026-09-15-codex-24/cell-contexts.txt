@@ -1,0 +1,132 @@
+cell_id:   onet-43-5032.00
+taxonomy:  ONET
+label:     Dispatchers, Except Police, Fire, and Ambulance
+hint:      Schedule and dispatch workers, work crews, equipment, or service vehicles for conveyance of materials, freight, or passengers, or for normal installation, service, or emergency repairs rendered outside the place of business. Duties may include using radio, telephone, or computer to transmit assignments and compiling statistics and reports on work progress.
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   naics-414110
+taxonomy:  NAICS
+label:     Clothing and Clothing Accessories Wholesaler-Distributors
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   naics-493130
+taxonomy:  NAICS
+label:     Farm Product Warehousing and Storage
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   onet-51-8091.00
+taxonomy:  ONET
+label:     Chemical Plant and System Operators
+hint:      Control or operate entire chemical processes or system of machines.
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   onet-17-2199.05
+taxonomy:  ONET
+label:     Mechatronics Engineers
+hint:      Research, design, develop, or test automation, intelligent systems, smart devices, or industrial systems control.
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   onet-27-3043.05
+taxonomy:  ONET
+label:     Poets, Lyricists and Creative Writers
+hint:      Create original written works, such as scripts, essays, prose, poetry or song lyrics, for publication or performance.
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   onet-43-9022.00
+taxonomy:  ONET
+label:     Word Processors and Typists
+hint:      Use word processor, computer, or typewriter to type letters, reports, forms, or other material from rough draft, corrected copy, or voice recording. May perform other clerical duties as assigned.
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   onet-51-4051.00
+taxonomy:  ONET
+label:     Metal-Refining Furnace Operators and Tenders
+hint:      Operate or tend furnaces, such as gas, oil, coal, electric-arc or electric induction, open-hearth, or oxygen furnaces, to melt and refine metal before casting or to produce specified types of steel.
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   naics-711311
+taxonomy:  NAICS
+label:     Live Theatres and Other Performing Arts Presenters with Facilities
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   onet-11-9199.11
+taxonomy:  ONET
+label:     Brownfield Redevelopment Specialists and Site Managers
+hint:      Plan and direct cleanup and redevelopment of contaminated properties for reuse. Does not include properties sufficiently contaminated to qualify as Superfund sites.
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   naics-524121
+taxonomy:  NAICS
+label:     Direct General Property and Casualty Insurance Carriers
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   onet-53-3054.00
+taxonomy:  ONET
+label:     Taxi Drivers
+hint:      Drive a motor vehicle to transport passengers on an unplanned basis and charge a fare, usually based on a meter.
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   naics-813110
+taxonomy:  NAICS
+label:     Religious Organizations
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   naics-238310
+taxonomy:  NAICS
+label:     Drywall and Insulation Contractors
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   onet-51-5113.00
+taxonomy:  ONET
+label:     Print Binding and Finishing Workers
+hint:      Bind books and other publications or finish printed products by hand or machine. May set up binding and finishing machines.
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   onet-51-4111.00
+taxonomy:  ONET
+label:     Tool and Die Makers
+hint:      Analyze specifications, lay out metal stock, set up and operate machine tools, and fit and assemble parts to make and repair dies, cutting tools, jigs, fixtures, gauges, and machinists' hand tools.
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   naics-526981
+taxonomy:  NAICS
+label:     Securitization Vehicles
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   naics-325520
+taxonomy:  NAICS
+label:     Adhesive Manufacturing
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   onet-25-1124.00
+taxonomy:  ONET
+label:     Foreign Language and Literature Teachers, Postsecondary
+hint:      Teach languages and literature courses in languages other than English. Includes teachers of American Sign Language (ASL). Includes both teachers primarily engaged in teaching and those who do a combination of teaching and research.
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   onet-11-9031.00
+taxonomy:  ONET
+label:     Education and Childcare Administrators, Preschool and Daycare
+hint:      Plan, direct, or coordinate academic or nonacademic activities of preschools or childcare centers and programs, including before- and after-school care.
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   naics-531120
+taxonomy:  NAICS
+label:     Lessors of Non-Residential Buildings (except Mini-Warehouses)
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   naics-561730
+taxonomy:  NAICS
+label:     Landscaping Services
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   onet-29-1124.00
+taxonomy:  ONET
+label:     Radiation Therapists
+hint:      Provide radiation therapy to patients as prescribed by a radiation oncologist according to established practices and standards. Duties may include reviewing prescription and diagnosis; acting as liaison with physician and supportive care personnel; preparing equipment, such as immobilization, treatment, and protection devices; and maintaining records, reports, and files. May assist in dosimetry pr
+history:   swept 0x, last never, 0 ideas, $0.00 spent
+
+cell_id:   naics-322219
+taxonomy:  NAICS
+label:     Other Paperboard Container Manufacturing
+history:   swept 0x, last never, 0 ideas, $0.00 spent
