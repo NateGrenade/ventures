@@ -44,11 +44,12 @@ accounts, balance tickets at day end, and resolve inventory or settlement discre
   Grain Marketing scale-clerk listing explicitly requires entering scale tickets,
   contracts, and other documents into grain accounting software.
   https://jobs.growmark.com/fssystem/job/Lis-Scale-Clerk-Total-Grain-Marketing%2C-LLC-Lis%2C-IL-IL-62448/1418241900/
-- [type: job-posting] (undated, current listing accessed 2026-09-15) Agri Trails Coop's
-  Grain Accounting Specialist processes inbound and outbound settlements, enters records
-  of account and grain checks into AgTrax, applies settlements to contracts, and contacts
-  terminal elevators for settlement corrections.
-  https://www.indeed.com/viewjob?jk=d985a1f3014a3487 [UNREACHABLE]
+- [type: job-posting] (posting date not stated; accessed 2026-09-15) Farmers Pride's
+  Grain Accounting Specialist manages daily grain settlements, maintains producer records,
+  reconciles grain inventory, and compiles daily hedge or position reports. This employer
+  source corroborates recurring settlement and reconciliation work, not a particular
+  software interface.
+  https://www.farmerspridecoop.com/careers/grain-accounting-specialist
 
 ## Automation hypothesis
 

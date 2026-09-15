@@ -1,26 +1,22 @@
 {
-  "status": "closed-partial-at-user-request",
+  "status": "complete",
   "completed_cells": [
     "onet-43-5032.00",
     "naics-414110",
     "naics-493130",
     "onet-51-8091.00",
-    "onet-27-3043.05",
     "onet-17-2199.05",
+    "onet-27-3043.05",
     "onet-43-9022.00",
     "onet-51-4051.00",
     "naics-711311",
-    "onet-53-3054.00",
     "onet-11-9199.11",
     "naics-524121",
+    "onet-53-3054.00",
     "naics-813110",
+    "naics-238310",
     "onet-51-5113.00",
-    "naics-238310"
-  ],
-  "partial_cells": [
-    "onet-51-4111.00"
-  ],
-  "not_completed_cells": [
+    "onet-51-4111.00",
     "naics-526981",
     "naics-325520",
     "onet-25-1124.00",
@@ -30,19 +26,26 @@
     "onet-29-1124.00",
     "naics-322219"
   ],
-  "new_candidates": 25,
-  "merged_evidence_matches": 1,
+  "partial_cells": [],
+  "not_completed_cells": [],
+  "new_candidates": 33,
+  "zero_yield_cells": [
+    "naics-322219"
+  ],
+  "coordinator_resolutions": 3,
   "cost_usd": null,
-  "usage_limit": "Wave 6 stopped at usage limit; user requested commit instead of continuation.",
   "verification_unreachable": {
-    "carrier-siu-claim-investigation-multisystem-documentation": [
-      "https://www.theladders.com/job/field-siu-investigation-property-casualty-allstate-insurance-company-odenton-md_87539587"
-    ],
-    "grain-scale-ticket-to-settlement-reconciliation": [
-      "https://www.indeed.com/viewjob?jk=d985a1f3014a3487"
+    "corrugated-die-room-tooling-coordinator-rekey": [
+      "https://careers.prattindustries.com/en/jobs/30-23768/tooling-coordinator-1st-shift/"
     ],
     "organic-grain-lot-folder-inventory-reconciliation": [
       "https://tallo.com/talent/job/business/scheduler-or-operations-coordinator/tx/muleshoe/front-desk-scaleadmin-2679424c"
+    ],
+    "radiation-therapy-charge-review-before-ehr-export": [
+      "https://www.uwhealth.org/files-directory/position-descriptions/technologists-technicians/radiation.therapist.clin.doc.spec.500037.pdf"
+    ],
+    "securitization-abs-ee-filing-assembly": [
+      "https://builtin.com/job/senior-compliance-analyst/3728954"
     ]
   }
 }

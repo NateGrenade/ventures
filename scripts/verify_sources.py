@@ -8,7 +8,7 @@ deleted, so the claim is visibly unsupported instead of silently disappearing.
 import argparse, re, socket, ssl, sys, urllib.request, urllib.error
 import nichelib as nl
 
-TIER = {"job-posting":1,"practitioner":1,"regulatory":1,"procurement":1,
+TIER = {"job-posting":1,"practitioner":1,"regulatory":1,"procurement":1,"institutional":1,
         "trade-press":2,"study":2,"conference":2,
         "vendor":3,"analyst":3,"listicle":3}
 URL_RE = re.compile(r"https?://[^\s)\]<>\"]+")

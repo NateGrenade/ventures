@@ -11,6 +11,7 @@
 | `practitioner` | Forum/subreddit/association post by an operator | No incentive to exaggerate to a buyer |
 | `regulatory` | Filing, comment docket, inspection report | Burden described under obligation |
 | `procurement` | RFP, bid record, contract award | Requirements plus a budget |
+| `institutional` | An organization's own published operating procedure — a university policy page, a hospital's documented intake workflow, an agency's internal handbook | The org describing its own process, for its own staff, with no one being sold to |
 
 ### Tier 2 — secondhand but disinterested
 | Type tag | What it is |
@@ -18,6 +19,11 @@
 | `trade-press` | Industry publication coverage |
 | `study` | Academic paper, government report, census data |
 | `conference` | Agenda, session description, panel topic |
+
+`institutional` is for organizations documenting how they actually work. It is not for an
+organization's marketing, recruiting, or public-relations pages — those are `vendor`. The
+test is who the page was written for: if the audience is the org's own staff or the public
+it serves, it is institutional; if the audience is a buyer, it is vendor.
 
 ### Tier 3 — someone is selling something
 | Type tag | What it is |

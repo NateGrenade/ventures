@@ -1,0 +1,17 @@
+{
+  "run_id": "2026-09-15-codex-24-resume",
+  "cells": [
+    "onet-51-4111.00",
+    "naics-526981",
+    "naics-325520",
+    "onet-25-1124.00",
+    "onet-11-9031.00",
+    "naics-531120",
+    "naics-561730",
+    "onet-29-1124.00",
+    "naics-322219"
+  ],
+  "workers": 3,
+  "reasoning": "medium",
+  "note": "Finish saved partial and uncompleted assignments; inspect other-run evidence first."
+}

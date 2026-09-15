@@ -19,11 +19,11 @@ source_count: 2
 
 ## Problem statement
 
-Carrier SIU investigators gather records, interview evidence, online research, and field findings, then restate that material in claim notes and multiple SIU systems. Allstate's current posting explicitly assigns investigators to summarize documents, record evaluations and decisions in the claim file, enter SIU information into multiple systems, and update the file with the investigation outcome.
+Carrier SIU investigators gather records, interview evidence, online research, and field findings, then restate that material in claim notes and multiple SIU systems. National General's posting on Allstate Careers explicitly assigns investigators to summarize documents, record evaluations and decisions in the claim file, enter SIU information into multiple systems, and update the file with the investigation outcome.
 
 ## Evidence
 
-- [type: job-posting] (2026-09) An Allstate property and casualty SIU investigator posting requires investigators to summarize documents into claim-system notes, enter SIU claim information into multiple systems, and update files with investigation outcomes. https://www.theladders.com/job/field-siu-investigation-property-casualty-allstate-insurance-company-odenton-md_87539587 [UNREACHABLE]
+- [type: job-posting] (posting date not stated; accessed 2026-09-15) National General's Chicago SIU Field Investigator role R34544, published on Allstate Careers, requires entering claim information into multiple SIU systems, summarizing documents in claim-system notes, and recording investigation outcomes. This employer source replaces the failed job-board mirror. https://www.allstate.jobs/job/23821087/siu-field-investigator/
 - [type: regulatory] (2024-03-17) NAIC receivership and insolvency task-force materials identify claim operations delegated to multiple third-party administrators or multiple systems as a recurring claim-data issue. This is broader claims-system context; it does not independently establish the SIU documentation workflow. https://content.naic.org/sites/default/files/national_meeting/RITF%20Materials%20031724%20%281%29.pdf
 
 ## Automation hypothesis

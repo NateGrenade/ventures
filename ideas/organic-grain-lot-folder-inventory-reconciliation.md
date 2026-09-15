@@ -19,7 +19,7 @@ source_count: 3
 
 ## Problem statement
 
-An active organic grain-storage posting assigns one administrator to ensure tickets match
+An April 2026 organic grain-storage posting assigns one administrator to ensure tickets match
 operational and inventory records, entries match lot folders and system balances, and
 physical and electronic inventory records stay accurate across locations
 ([Triple Nickel](https://tallo.com/talent/job/business/scheduler-or-operations-coordinator/tx/muleshoe/front-desk-scaleadmin-2679424c [UNREACHABLE])).
@@ -49,12 +49,12 @@ organic recordkeeping rules
 
 ## Verification limitation
 
-The worker read the full Tallo posting through web browsing, including the lot-folder and system-balance duties. The repository URL verifier could not reach that page. The regulatory sources corroborate recordkeeping obligations, not the employer-specific manual workflow; that workflow currently rests on this one posting.
+The full Tallo posting was read through web browsing again on 2026-09-15, including the lot-folder and system-balance duties. Its embedded WorkInTexas record lists an expiry of 2026-05-02, while the outer listing shows 2026-05-27; both have passed. It is historical evidence, not confirmation of an active vacancy. The repository URL verifier could not reach the page. The regulatory sources corroborate recordkeeping obligations, not the employer-specific manual workflow; that workflow rests on this one dated posting.
 
 ## Automation hypothesis
 
 SPECULATIVE. A reconciliation tool could extract lot IDs from scale tickets, bills of
 lading, cleaning records, and transaction certificates, compare them with the warehouse's
-inventory balance, and present missing links or quantity mismatches for review. The active
-posting establishes a mixed paper-and-system workflow at one operator; further research
+inventory balance, and present missing links or quantity mismatches for review. The dated
+posting describes a mixed paper-and-system workflow at one operator; further research
 would need to show how common that arrangement is among organic grain warehouses.
