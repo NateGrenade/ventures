@@ -1,12 +1,19 @@
 #!/usr/bin/env python3
 """Select which frontier cells to sweep next. This is the ONLY thing that decides where agents look."""
-import argparse, json
+import argparse, hashlib, json
 import nichelib as nl
 
+def spread(cell_id):
+    """Stable pseudo-random ordering. Never-swept cells sorted by ID would walk the taxonomy
+    alphabetically — the first month would be nothing but agriculture. Hashing scatters the
+    queue across sectors while staying deterministic, so the same cell always sorts the same
+    way and reruns are reproducible."""
+    return hashlib.sha1(cell_id.encode()).hexdigest()
+
 def priority(c):
-    # never-swept first; then stale + historically productive
+    # never-swept first, scattered across the taxonomy; then stale + historically productive
     if c.get("last_swept") is None:
-        return (0, 0, c["cell_id"])
+        return (0, 0, spread(c["cell_id"]))
     cost = max(c.get("est_cost_usd", 0.0), 0.01)
     yield_per_dollar = c.get("promoted_yielded", 0) * 10 + c.get("ideas_yielded", 0)
     return (1, -(yield_per_dollar / cost), c.get("last_swept", ""))

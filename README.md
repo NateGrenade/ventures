@@ -156,8 +156,9 @@ produces.
 - **The promotion threshold (62) is a guess.** Retune after ~30 scored ideas.
 - **The dedup threshold (0.45 containment) is tuned on two examples.** Run
   `dedup.py --sweep` monthly and adjust.
-- **`next_cells.py` policy is naive** — never-swept first, then yield-per-dollar. It has no
-  notion of cell similarity, so it may cluster in one part of the taxonomy. Revisit once
-  `cost_report.py` has real data.
+- **`next_cells.py` policy is simple** — never-swept first (scattered by a stable hash so
+  batches don't walk the taxonomy alphabetically), then yield-per-dollar. It has no notion of
+  cell *similarity*, so it can't yet avoid sweeping three near-identical occupations in one
+  batch. Revisit once `cost_report.py` has real data.
 - **The repository is public.** Its output is, by design, a list of markets nobody has built
   in yet. Consider whether that should stay readable by anyone who finds it.
