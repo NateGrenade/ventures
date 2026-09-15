@@ -66,6 +66,10 @@ Look for descriptions of **workarounds**. A detailed workaround is a problem sta
 ---
 slug: example-slug
 status: sandbox
+job: title clerks manually cross-reference county recorder indexes against
+  the internal title plant, because the plant software has no import for
+  recorder feeds
+split_from: null
 cell_id: naics-541191
 created: 2026-09-14
 owner_agent: sweep-03
@@ -84,13 +88,13 @@ sentences. Operational language only — no market framing, no pitch.
 
 ## Evidence
 
-- [type: job-posting] Three current listings at <firm> for a role whose
-  description is manual cross-referencing of X against Y.
+- [type: job-posting] (2026-08) Three current listings at <firm> for a role
+  whose description is manual cross-referencing of X against Y.
   https://example.com/posting
-- [type: practitioner] Operator describes a monthly two-day reconciliation
-  done in Excel. https://example.com/thread
-- [type: trade-press] Coverage noting the sector's dominant system has no
-  export function. https://example.com/article
+- [type: practitioner] (2025-11) Operator describes a monthly two-day
+  reconciliation done in Excel. https://example.com/thread
+- [type: trade-press] (2024-03) Coverage noting the sector's dominant system
+  has no export function. https://example.com/article
 
 ## Automation hypothesis
 
@@ -105,3 +109,4 @@ surface if known.
 - **Sweeping adjacent cells because they look better.** Note them; the driver will queue them. Wandering breaks coverage accounting.
 - **Writing the automation hypothesis first and hunting evidence to fit it.** Evidence first, always.
 - **Padding a thin sweep.** Zero stubs recorded honestly is worth more than four speculative ones.
+- **Bundling two problems because they share a sector.** If the `job:` line needs an "and" joining two different manual processes, it is two files.

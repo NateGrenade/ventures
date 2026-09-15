@@ -29,6 +29,33 @@ Queries like "underserved industries," "markets ripe for disruption," "industrie
 
 If you catch yourself writing a query containing *opportunity, underserved, ripe, disruption, untapped, ready for AI*, stop and rewrite it as a search for a document that a practitioner or an employer produced for their own purposes.
 
+## What counts as in-scope work
+
+The target is **information work**: data moving between systems, formats, or organizations
+by hand. Rekeying, reconciling, cross-referencing, chasing paperwork, bridging two systems
+that do not talk to each other.
+
+The target is **not** physical labor, however tedious or manual. Lifting, driving, inspecting
+on site, operating equipment, and caring for people are all real work that no amount of
+software absorbs. A sweep that returns well-sourced evidence of hard physical work has found
+nothing this pipeline can use.
+
+This matters because the taxonomy is full of physical occupations and they will produce
+abundant Tier 1 evidence. `onet-47-5071.00` (Roustabouts, Oil and Gas) is a real cell in the
+frontier. Sweeping it for "manual work" would succeed and be worthless.
+
+**But do not discard a physical cell outright.** The paperwork *around* physical work
+routinely qualifies even when the work itself does not: a roustabout crew's daily job
+tickets, equipment logs, and safety compliance filings are information work, and they are
+often exactly the kind of thing still done on carbon paper. Sweep the administrative shadow
+of the occupation, not the occupation.
+
+If a cell offers neither — the work is physical and its paperwork is already digital or
+trivial — record **zero stubs** and say so in the ledger note. That is a useful result.
+
+Every `job:` line must survive this test: does it describe information moving, or a person
+moving? If the latter, it does not get a file.
+
 ## Evidence hunt protocol
 
 Work the source types below in order. Stop when you have exhausted reasonable queries or hit the turn budget — partial sweeps are fine and the ledger records them.
@@ -62,6 +89,8 @@ For each candidate:
    cell_id: <assigned cell>
    created: <YYYY-MM-DD>
    owner_agent: <your agent id, or "manual">
+   job: <one line — see "One job per file" below. REQUIRED>
+   split_from: null         # set only when splitting one finding into several files
    evidence_tier: null      # computed, leave null
    scores: {}               # populated by score.py, never by hand
    human_verdict: null
@@ -69,7 +98,27 @@ For each candidate:
    ---
    ```
 
-   Body sections, in order: **Problem statement** (what work is done by hand, by whom, how often), **Evidence** (bulleted, every bullet carrying a URL and a source type), **Automation hypothesis** (one paragraph, explicitly speculative).
+   Body sections, in order: **Problem statement** (what work is done by hand, by whom, how often), **Evidence** (bulleted, every bullet carrying a URL, a source type, and the source's date), **Automation hypothesis** (one paragraph, explicitly speculative).
+
+   **Date every source.** A 2022 procurement document is much weaker evidence of a *current* manual process than a 2025 one, and Phase 2 cannot weigh that if you do not record it.
+
+## One job per file
+
+Write the `job:` line first. It is a single sentence in this shape:
+
+> *\<who\> manually \<verb\> \<thing\> between \<system A\> and \<system B\>, because \<why no tooling bridges them\>.*
+
+If you cannot write **one** such sentence covering your whole finding, you have found more than one thing. Split it.
+
+**The test is buyer and job, not topic.** One file if a single product sold to one buyer solves the whole thing. Two files if solving one half leaves the other untouched, or if different people sign the check. Two problems in the same sector, sharing vocabulary and even sharing sources, are still two problems — a billing clerk balancing daily revenue and a contract manager handing accounts to a collection agency are different buyers with different integration surfaces, however adjacent they sound.
+
+When you split one finding into several files:
+
+- Give every resulting file the same `split_from: <original-slug>` value. This exempts the set from being auto-merged back together by `dedup.py`.
+- Copy each source into whichever files it actually supports. A source can support more than one.
+- Run `dedup.py --check` for each file separately.
+
+The `job:` line is also what `dedup.py` compares against — not your prose. Write it as plainly as possible, and name the systems rather than the industry. Sector vocabulary is shared by genuinely distinct ideas and absent from genuinely identical ones, so an idea framed as "municipal utility billing reconciliation" hides both the duplicate in the corpus and the distinct idea sitting next to it.
 
 3. **Never edit `INDEX.md`.** It is generated. Never edit another agent's idea file except to append evidence under `## Additional Evidence`.
 

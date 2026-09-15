@@ -70,3 +70,15 @@ def overlap(a, b):
     Jaccard punishes the size asymmetry and misses real duplicates."""
     if not a or not b: return 0.0
     return len(a & b) / min(len(a), len(b))
+
+# Sector nouns that appear in every idea from a given cell and carry no discriminating
+# information. Stripping them is what lets the job line compare across industries.
+SECTOR_NOISE = set("""municipal city county utility utilities water sewer gas sanitation
+district office offices department agency agencies clerk clerks staff small mid sized
+firm firms company companies business businesses industry sector provider providers
+service services system systems software platform manual manually process processes
+account accounts customer customers data""".split())
+
+def canonical(text):
+    """Normalize a job statement for comparison: lowercase, strip sector nouns."""
+    return " ".join(w for w in (text or "").lower().split() if w not in SECTOR_NOISE)

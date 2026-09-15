@@ -42,7 +42,7 @@ How you would get in front of the buyer.
 | 2 | Identifiable aggregation point: trade association, conference, dominant forum, industry newsletter |
 | 3 | Buyers are concentrated, or an existing distributor could carry it |
 
-## `tractability` (weight 2)
+## `tractability` (weight 3, HARD FLOOR of 2)
 
 | Value | Anchor |
 |---|---|
@@ -50,6 +50,15 @@ How you would get in front of the buyer.
 | 1 | Requires integration with a closed system; feasibility unknown |
 | 2 | Integration surface exists (API, export, standard file format) or the work is self-contained |
 | 3 | Clean surface **and** the capability that makes it newly feasible is identifiable |
+
+**Scoring 0 or 1 here is a demote regardless of composite score.** This pipeline exists to
+find work that software can absorb. An idea with vivid pain, an obvious buyer, and no way
+for code to touch the workflow is not a near-miss — it is a different kind of business, and
+letting the other dimensions carry it is how this pipeline fills up with consulting practices.
+
+Note that an integration surface is a *fact to establish*, not a guess. If you could not
+determine whether the incumbent system exports data, score 1 and say so; do not score 2 on
+the assumption that something must be possible.
 
 ## `persistence_quality` (weight 3)
 
@@ -60,15 +69,28 @@ Derived from the mandatory persistence tag.
 | 0 | `unattractive-economics`, `fragmented-buyer`, `incumbent-distribution` |
 | 1 | `regulatory-moat` — sometimes an opportunity, usually a wall |
 | 1 | `unnoticed` — scored low deliberately; near-always a research failure |
-| 3 | `genuinely-hard` |
+| 3 | `genuinely-hard` — **technically** unsolved, not human-presence-required |
 | 3 | `recently-unlocked` |
+
+`genuinely-hard` is the tag most easily abused. It means the computational or data problem
+has no good solution yet. It does **not** cover work that stays manual because a person must
+physically be somewhere, exercise legal judgment, or hold a relationship. Those are real
+reasons the work persists, but they make it unautomatable rather than promising — score
+`tractability` at 0 and demote.
 
 ## Composite
 
 Weighted sum, normalized to 0–100 by `score.py`.
 
-- **Promotion threshold: 62**, *and* all hard gates in SKILL.md Step 5 must pass.
+- **Promotion threshold: 62**, *and* all hard gates must pass.
+- Hard gates: two or more independent Tier 1/2 sources; a named buyer role; an eligible
+  persistence tag; **`tractability` at 2 or above**.
 - Scoring above threshold while failing a hard gate is a demote. The gates are not tiebreakers.
+
+Tractability's weight moved from 2 to 3 (2026-09-14), which shifts the denominator slightly —
+a given set of field values now scores marginally differently than it did before. The
+threshold is unchanged, because it was a guess either way and needs recalibrating against
+~30 real ideas regardless.
 
 ## Calibration override
 

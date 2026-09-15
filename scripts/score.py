@@ -2,15 +2,20 @@
 """Compute the composite scrutiny score. Models emit anchored field values; this does the arithmetic.
 
 Kept out of model context deliberately — LLMs drift generous on weighted averages across a batch.
+
+Tractability carries both a weight and a hard floor. A strong-pain, clear-buyer idea that
+software cannot actually absorb is not a near-miss for this pipeline; it is out of scope,
+and weighting alone would let it through on the strength of the other dimensions.
 """
 import argparse
 import nichelib as nl
 
 WEIGHTS = {"pain_evidence":3,"buyer_clarity":3,"incumbent_gap":2,
-           "reachability":2,"tractability":2,"persistence_quality":3}
+           "reachability":2,"tractability":3,"persistence_quality":3}
 MAXV = 3
 THRESHOLD = 62
 GOOD_PERSISTENCE = {"recently-unlocked","genuinely-hard"}
+MIN_TRACTABILITY = 2   # hard floor: the whole point is work software can absorb
 
 def composite(scores):
     total = sum(WEIGHTS[k] * int(scores.get(k, 0)) for k in WEIGHTS)
@@ -24,6 +29,9 @@ def gates(meta):
     if not meta.get("buyer_role"): fails.append("no named buyer role")
     if meta.get("persistence") not in GOOD_PERSISTENCE:
         fails.append(f"persistence={meta.get('persistence')!r} not eligible")
+    if "tractability" in s and int(s["tractability"]) < MIN_TRACTABILITY:
+        fails.append(f"tractability={s['tractability']} below floor {MIN_TRACTABILITY} "
+                     f"— no usable integration surface, so software cannot absorb this")
     missing = [k for k in WEIGHTS if k not in s]
     if missing: fails.append(f"missing scores: {missing}")
     return fails

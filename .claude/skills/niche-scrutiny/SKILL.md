@@ -77,6 +77,7 @@ Promotion requires **all** of:
 - Two or more independent Tier 1/2 sources
 - A named buyer role with budget authority
 - Persistence tag of `recently-unlocked` or `genuinely-hard`
+- `tractability` scored 2 or above — software must be able to reach the workflow
 - Composite score above threshold (`score.py` reports pass/fail)
 
 Otherwise `status: demoted`. **Demoted ideas are never deleted.** They are the training data for frontier policy and for Nathan's calibration file.
