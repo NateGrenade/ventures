@@ -10,7 +10,7 @@ COST_CEILING="${COST_CEILING:-15.00}"
 git pull --rebase --autostash
 
 i=0
-for cell in $(python scripts/next_cells.py --count "$CELL_COUNT"); do
+for cell in $(python3 scripts/next_cells.py --count "$CELL_COUNT"); do
   i=$((i+1))
   claude -p "Sweep frontier cell ${cell} using the niche-sweep skill. Agent id: sweep-${i}." \
     --max-turns "$MAX_TURNS" > "logs/sweep-${cell}.log" 2>&1 &
@@ -18,17 +18,18 @@ done
 wait
 
 # deterministic passes, in order
-python scripts/dedup.py --sweep
-python scripts/verify_sources.py --unverified-only
+python3 scripts/dedup.py --sweep
+python3 scripts/verify_sources.py --unverified-only
 
 # scrutiny over whatever the sweep produced
-if [ -n "$(python scripts/list_ideas.py --status sandbox --paths)" ]; then
+if [ -n "$(python3 scripts/list_ideas.py --status sandbox --paths)" ]; then
   claude -p "Run the niche-scrutiny skill over all ideas at status sandbox." --max-turns 60 \
     > "logs/scrutiny-$(date -I).log" 2>&1
 fi
 
-python scripts/build_index.py
-python scripts/cost_report.py | tee "logs/cost-$(date -I).txt"
+python3 scripts/rollup_cells.py
+python3 scripts/build_index.py
+python3 scripts/cost_report.py | tee "logs/cost-$(date -I).txt"
 
 git add -A && git commit -m "batch: $(date -I)" && git push
 

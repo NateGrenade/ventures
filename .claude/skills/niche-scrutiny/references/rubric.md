@@ -2,7 +2,44 @@
 
 Emit integer values for each dimension into the `scores:` frontmatter map. `score.py` computes the composite. Anchors are binding: pick the anchor that matches the evidence you actually have, not the one that matches your impression.
 
-## `pain_evidence` (weight 3)
+**Weights, floors, and the threshold are not stated in the prose below.** They live in
+`config/scoring.yaml` and are reproduced in the generated block at the end of this file,
+which is the authoritative copy. Where prose and that block disagree, the block wins.
+
+<!-- GENERATED FROM config/scoring.yaml — do not edit by hand -->
+
+**Active profile: `balanced` — promotion threshold 62/100.**
+
+| dimension | weight | hard floor |
+|---|---|---|
+| `buyer_clarity` | 3 | — |
+| `deal_economics` | 3 | 1 |
+| `pain_evidence` | 3 | — |
+| `persistence_quality` | 3 | — |
+| `replicability` | 3 | 2 |
+| `tractability` | 3 | 2 |
+| `incumbent_gap` | 2 | — |
+| `reachability` | 2 | — |
+
+Maximum raw score 66, normalized to 100.
+
+Revenue ceiling bands (`buyer_count` × `annual_price_usd`):
+
+- ≥ $500,000 → `deal_economics` 3
+- ≥ $100,000 → `deal_economics` 2
+- ≥ $25,000 → `deal_economics` 1
+- ≥ $0 → `deal_economics` 0
+
+Other gates: at least 2 sources, evidence tier 2 or better, a named buyer role, persistence in ['recently-unlocked', 'genuinely-hard'].
+
+A hard floor is absolute: scoring below it is a demote whatever the composite says.
+Floors shown as — are disabled in this profile.
+
+To change any of this, edit `config/scoring.yaml` and re-run `python scripts/render_rubric.py`. Check the effect on the real corpus first with `python scripts/tune.py --compare`.
+
+<!-- END GENERATED -->
+
+## `pain_evidence`
 
 | Value | Anchor |
 |---|---|
@@ -11,7 +48,7 @@ Emit integer values for each dimension into the `scores:` frontmatter map. `scor
 | 2 | Two or more independent sources; at least one Tier 1 |
 | 3 | Multiple Tier 1 sources **plus** a dollar figure attached — salary band from a job posting, burden hours from a filing, contract value from an RFP |
 
-## `buyer_clarity` (weight 3)
+## `buyer_clarity`
 
 | Value | Anchor |
 |---|---|
@@ -20,7 +57,7 @@ Emit integer values for each dimension into the `scores:` frontmatter map. `scor
 | 2 | Named role that plausibly holds budget for tools in this category |
 | 3 | Named role, and evidence they already buy something adjacent — an existing line item you would displace or sit beside |
 
-## `incumbent_gap` (weight 2)
+## `incumbent_gap`
 
 | Value | Anchor |
 |---|---|
@@ -31,7 +68,7 @@ Emit integer values for each dimension into the `scores:` frontmatter map. `scor
 
 *A 3 here demands you actually searched. Record the queries you ran in the scrutiny log. "Found no competitors" without recorded queries scores 1.*
 
-## `reachability` (weight 2)
+## `reachability`
 
 How you would get in front of the buyer.
 
@@ -42,7 +79,7 @@ How you would get in front of the buyer.
 | 2 | Identifiable aggregation point: trade association, conference, dominant forum, industry newsletter |
 | 3 | Buyers are concentrated, or an existing distributor could carry it |
 
-## `tractability` (weight 3, HARD FLOOR of 2)
+## `tractability`
 
 | Value | Anchor |
 |---|---|
@@ -60,7 +97,55 @@ Note that an integration surface is a *fact to establish*, not a guess. If you c
 determine whether the incumbent system exports data, score 1 and say so; do not score 2 on
 the assumption that something must be possible.
 
-## `persistence_quality` (weight 3)
+## `deal_economics` — DERIVED, do not emit
+
+`score.py` computes this. Your job is to supply two sourced frontmatter numbers:
+
+```yaml
+buyer_count: 4200          # organizations plausibly reachable AND plausibly buying
+annual_price_usd: 4800     # defensible annual price per buyer
+```
+
+The ceiling is their product, bucketed per the generated block below.
+
+**Leaving the numbers undetermined is a demote wherever the floor is active.** A
+market that cannot fund its own maintenance is not a market, and "we couldn't tell" is not
+a reason to promote — it is a reason to go find out.
+
+Both numbers need a derivation in the scrutiny log. `buyer_count` should come from a firm
+count (Census County Business Patterns, a licensing roster, an association directory), then
+cut by the fraction plausibly large enough to have this problem — state that fraction and
+rate your confidence in it, because it is usually the load-bearing assumption. Price should
+be anchored to something the buyer already pays for, not invented.
+
+Do not pad the count with organizations you have no way to reach. `reachability` and this
+dimension are supposed to bite separately; inflating one to rescue the other defeats both.
+
+## `replicability`
+
+Does customer #2 cost materially less to serve than customer #1?
+
+| Value | Anchor |
+|---|---|
+| 0 | Every customer is a bespoke integration; #2 costs about what #1 did |
+| 1 | Core logic is shared, but each buyer needs custom connector work |
+| 2 | One integration surface serves a meaningful share of buyers — a dominant vendor, a common export format |
+| 3 | A single standard covers most of the market — mandated schema, regulated filing format, one vendor with commanding share |
+
+**Scoring 2 or 3 requires naming the standard or vendor, with evidence of its share.** "The
+formats are probably similar" scores 0.
+
+This dimension exists because of how the ideas get used. A $200k/yr niche that is one
+codebase serving forty customers can be built and left running while you move to the next
+one. A $2M/yr niche that is twelve bespoke integrations is a consulting firm, and it will
+consume all the time the second product needed. Raw market size cannot tell those apart.
+
+**This floor is the most opinionated number in the configuration.** It is set for stacking
+several small products rather than building one large one. It is disabled entirely in the
+`introductory` profile, which is the right setting while still learning what these
+businesses are like.
+
+## `persistence_quality`
 
 Derived from the mandatory persistence tag.
 
@@ -82,18 +167,21 @@ reasons the work persists, but they make it unautomatable rather than promising 
 
 Weighted sum, normalized to 0–100 by `score.py`.
 
-- **Promotion threshold: 62** (inclusive), *and* all hard gates must pass.
-- The operative threshold and weights live in `scripts/score.py`; this document explains
-  them. An authorized threshold change must update both files. Editing prose alone does
-  not change computed eligibility.
+- **Promotion threshold: 62**, *and* all hard gates must pass.
 - Hard gates: two or more independent Tier 1/2 sources; a named buyer role; an eligible
-  persistence tag; **`tractability` at 2 or above**.
+  persistence tag; `tractability` ≥ 2; **revenue ceiling ≥ $25k/yr and determined**;
+  **`replicability` ≥ 2**.
 - Scoring above threshold while failing a hard gate is a demote. The gates are not tiebreakers.
 
-Tractability's weight moved from 2 to 3 (2026-09-14), which shifts the denominator slightly —
-a given set of field values now scores marginally differently than it did before. The
-threshold is unchanged, because it was a guess either way and needs recalibrating against
-~30 real ideas regardless.
+Tractability's weight moved from 2 to 3 (2026-09-14). `deal_economics` and `replicability`
+were added at weight 3 each (2026-09-15), taking the maximum raw score from 48 to 66.
+
+The threshold stays at 62, but expect the promotion rate to fall sharply — two new hard
+gates now apply, and one of them (an undetermined revenue ceiling) will fail ideas that
+would previously have sailed through on strong pain evidence alone. That is the intent.
+If the rate falls to zero across thirty ideas, the problem is more likely the $25k floor or
+the replicability floor than the threshold; check which gate is firing before touching
+anything.
 
 ## Calibration override
 

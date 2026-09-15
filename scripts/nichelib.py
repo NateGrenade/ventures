@@ -82,3 +82,41 @@ account accounts customer customers data""".split())
 def canonical(text):
     """Normalize a job statement for comparison: lowercase, strip sector nouns."""
     return " ".join(w for w in (text or "").lower().split() if w not in SECTOR_NOISE)
+
+_CONFIG = {}
+
+def profiles():
+    """Names of every profile defined in the config."""
+    path = ROOT / "config" / "scoring.yaml"
+    if not path.exists():
+        sys.exit(f"missing {path} — scoring configuration is required")
+    return list(yaml.safe_load(path.read_text(encoding="utf-8")).get("profiles", {}))
+
+def config(profile=None):
+    """Scoring configuration for a profile. Defaults to the one selected in the YAML.
+
+    Pass profile= to evaluate a different one WITHOUT touching the file. An earlier version
+    of tune.py --compare rewrote config/scoring.yaml in place and restored it afterwards,
+    which left the config on the wrong profile if the process died mid-run and could be read
+    mid-swap by a concurrent coordinator."""
+    global _CONFIG
+    path = ROOT / "config" / "scoring.yaml"
+    if not path.exists():
+        sys.exit(f"missing {path} — scoring configuration is required")
+    raw = yaml.safe_load(path.read_text(encoding="utf-8"))
+    name = profile or raw.get("profile", "balanced")
+    if name in _CONFIG:
+        return _CONFIG[name]
+    if name not in raw.get("profiles", {}):
+        sys.exit(f"profile {name!r} not defined in config/scoring.yaml")
+    prof = raw["profiles"][name]
+    _CONFIG[name] = {
+        "profile": name,
+        "threshold": prof["threshold"],
+        "weights": prof["weights"],
+        "floors": prof.get("floors", {}),
+        "max_value": raw.get("max_value", 3),
+        "ceiling_bands": [tuple(b) for b in raw["ceiling_bands"]],
+        "gates": raw.get("gates", {}),
+    }
+    return _CONFIG[name]

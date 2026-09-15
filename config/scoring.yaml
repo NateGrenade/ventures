@@ -1,0 +1,82 @@
+# Scoring configuration — the single source of truth.
+#
+# score.py reads this at runtime. The numbers section of the scrutiny rubric is GENERATED
+# from this file by scripts/render_rubric.py, so the critic always reasons against the same
+# numbers the scorer applies. Edit here, then run:
+#
+#     python scripts/render_rubric.py
+#
+# Switch profile to change posture without hand-editing numbers. Run scripts/tune.py after
+# any change to see what it does to your actual corpus.
+
+profile: balanced
+
+profiles:
+
+  # Room to learn a domain the hard way. Bespoke first customers allowed, small markets
+  # allowed. Use while you are still finding out what these businesses are actually like.
+  introductory:
+    threshold: 55
+    floors:
+      tractability: 2
+      deal_economics: 0        # 0 disables the floor; undetermined ceilings still pass
+      replicability: 0
+    weights:
+      pain_evidence: 3
+      buyer_clarity: 3
+      incumbent_gap: 2
+      reachability: 2
+      tractability: 3
+      persistence_quality: 3
+      deal_economics: 2
+      replicability: 2
+
+  # Default. Small markets fine, but the work has to be reusable across customers.
+  balanced:
+    threshold: 62
+    floors:
+      tractability: 2
+      deal_economics: 1        # >= $25k/yr ceiling, and it must be determined
+      replicability: 2
+    weights:
+      pain_evidence: 3
+      buyer_clarity: 3
+      incumbent_gap: 2
+      reachability: 2
+      tractability: 3
+      persistence_quality: 3
+      deal_economics: 3
+      replicability: 3
+
+  # For when you have a couple of these running and only want ones worth displacing them.
+  scale:
+    threshold: 70
+    floors:
+      tractability: 2
+      deal_economics: 2        # >= $100k/yr ceiling
+      replicability: 3         # a single standard must cover most of the market
+    weights:
+      pain_evidence: 2
+      buyer_clarity: 3
+      incumbent_gap: 2
+      reachability: 3
+      tractability: 3
+      persistence_quality: 3
+      deal_economics: 4
+      replicability: 4
+
+# Shared across profiles.
+max_value: 3
+
+# Revenue ceiling (buyer_count x annual_price_usd) -> deal_economics band.
+ceiling_bands:
+  - [500000, 3]
+  - [100000, 2]
+  - [25000, 1]
+  - [0, 0]
+
+gates:
+  min_sources: 2
+  max_evidence_tier: 2
+  require_buyer_role: true
+  eligible_persistence: [recently-unlocked, genuinely-hard]

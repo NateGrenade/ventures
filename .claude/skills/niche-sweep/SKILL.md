@@ -10,7 +10,7 @@ Gather evidence of operational pain inside one assigned frontier cell. Emit cand
 ## Preconditions — check these first, fail fast
 
 1. `frontier/cells.jsonl` exists. If not, stop and tell Nathan to run `python3 scripts/bootstrap.py`.
-2. Sweep **exactly one** `cell_id`. Workers use the coordinator's assignment. For an explicit standalone one-cell request without an ID, select one with `python3 scripts/next_cells.py --count 1`. For an unspecified batch or general hunt, use `niche-batch`.
+2. You have been assigned **exactly one** `cell_id`. If none was given, run `python3 scripts/next_cells.py --count 1` and take the result.
 3. Load your cell's context:
    ```bash
    python3 scripts/show_cell.py <cell_id>
@@ -82,7 +82,12 @@ For each candidate:
    ```bash
    python3 scripts/dedup.py --check "<proposed title>" --summary "<one-line problem statement>"
    ```
-   On a reported near-match, do not create a new file. A batch worker returns the match and proposed sourced evidence to the coordinator without editing the canonical file. In a standalone sweep with exclusive ownership, append under `## Additional Evidence` and re-verify that idea. Never overwrite an existing slug.
+   On a reported near match, do not create a new file. What you do next depends on how you were invoked:
+
+   - **Running inside a batch** (spawned by `niche-batch`, or told you are one of several sweepers): **do not touch the existing file.** Report the match in your summary — the slug you matched, and the evidence you would have added — and let the orchestrator merge it single-threaded. Concurrent sweepers have no locking, so two agents appending to the same canonical file will lose one of the updates.
+   - **Running standalone** on a single named cell, with no other sweepers active: append your evidence to the named canonical file under an `## Additional Evidence` heading and stop there.
+
+   If you are unsure which applies, assume batch and report rather than write.
 
 2. **Write `ideas/<slug>.md`** using the template in `references/evidence-sources.md`. Required frontmatter:
 
@@ -96,7 +101,7 @@ For each candidate:
    job: <one line — see "One job per file" below. REQUIRED>
    split_from: null         # set only when splitting one finding into several files
    evidence_tier: null      # computed, leave null
-   scores: {}               # left empty in sweep; scrutiny writes anchored dimension values
+   scores: {}               # populated by score.py, never by hand
    human_verdict: null
    cost_usd: null
    ---
@@ -118,13 +123,13 @@ If you cannot write **one** such sentence covering your whole finding, you have 
 
 When you split one finding into several files:
 
-- Give every resulting file the same `split_from: <original-slug>` value. The corpus audit (`dedup.py --sweep`) skips pairs with the same nonempty lineage. The pre-write `--check` has no lineage argument; review any match against the distinct buyer/job rule and record why a deliberate split remains separate.
+- Give every resulting file the same `split_from: <original-slug>` value. This exempts the set from being auto-merged back together by `dedup.py`.
 - Copy each source into whichever files it actually supports. A source can support more than one.
 - Run `dedup.py --check` for each file separately.
 
 The `job:` line is also what `dedup.py` compares against — not your prose. Write it as plainly as possible, and name the systems rather than the industry. Sector vocabulary is shared by genuinely distinct ideas and absent from genuinely identical ones, so an idea framed as "municipal utility billing reconciliation" hides both the duplicate in the corpus and the distinct idea sitting next to it.
 
-3. **Never edit `INDEX.md` by hand.** In a batch, edit only new idea files you own; the coordinator handles additions to existing files after workers finish.
+3. **Never edit `INDEX.md`.** It is generated. Never edit another agent's idea file except to append evidence under `## Additional Evidence`.
 
 ## Source discipline
 
@@ -134,26 +139,17 @@ After writing, run:
 ```bash
 python3 scripts/verify_sources.py --slug <slug>
 ```
-This checks URLs and computes tier/count fields from source-type tags. It marks failed
-URLs `[UNREACHABLE]`; it does not remove their claims, prove their content, establish
-independence, or reliably exclude those tags from its counts. Label unsupported claims
-explicitly and report failures. Do not hand-edit computed tier/count fields. Never use
-`--offline` to claim sources were verified.
+This fetches every URL, confirms it resolves, and computes `evidence_tier`. Unreachable citations are stripped and their claims downgraded. Do not hand-edit `evidence_tier`.
 
 ## Closing the sweep
 
 Append one ledger record:
 ```bash
 python3 scripts/ledger_append.py --cell <cell_id> --agent <agent_id> \
-  --stubs <n> --merged <n> \
+  --stubs <n> --merged <n> --cost <usd> \
   --sources <comma-separated source types that actually yielded> \
   --note "<optional observation>"
 ```
-
-Pass `--cost <usd>` only for a known or explicitly labeled estimated cost. If cost is
-unavailable, omit it and put `cost unknown` in the note: the current script defaults to
-zero, which must not be described as measured free usage. Count actual merges only;
-worker-reported matches awaiting resolution are not completed merges.
 
 `--sources` records which source types produced usable evidence in this cell — e.g.
 `job-posting,procurement`. Record only what actually yielded; omit types you tried and got
@@ -162,10 +158,7 @@ kinds of digging are worth the tokens.
 
 Use the note field for anything else the frontier policy should know: a taxonomy cell that was too broad, an adjacent cell worth queueing, a tool that failed.
 
-`ledger_append.py` appends sweep records without rewriting cell counters. In a batch,
-workers do not run `rollup_cells.py`, `build_index.py`, or git; the coordinator handles
-aggregate work after completion. For a standalone sweep with no other active workers,
-run rollup and index generation after recording the sweep.
+`ledger_append.py` is append-only and safe to run while other sweepers are working. Do not run `rollup_cells.py`, `build_index.py`, or git — the orchestrator does those once the batch is done.
 
 Then stop. Do not score, critique, or research your own candidates — that is Phase 2's job, and doing it here defeats the separation.
 

@@ -1,70 +1,67 @@
 ---
 name: niche-batch
-description: Run a full sweep batch in one session — pull N cells from the frontier, fan them out to parallel niche-sweeper subagents, then run the deterministic passes (dedup, source verification, rollup, index) and report; commit or push when authorized. Use whenever Nathan wants to sweep without naming cells, says to run a batch, a round, or "go hunt," asks to keep sweeping until a budget or time limit is hit, or invokes /sweep. This is the normal way to run Phase 1 — niche-sweep on its own is for sweeping one named cell by hand. Do NOT use for scrutiny, falsification, or dossier work.
+description: Run a full sweep batch in one session — pull N cells from the frontier, fan them out to parallel niche-sweeper subagents, then run the deterministic passes (dedup, source verification, rollup, index) and commit. Use whenever Nathan wants to sweep without naming cells, says to run a batch, a round, or "go hunt," asks to keep sweeping until a budget or time limit is hit, or invokes /sweep. This is the normal way to run Phase 1 — niche-sweep on its own is for sweeping one named cell by hand. Do NOT use for scrutiny, falsification, or dossier work.
 ---
 
 # Niche Batch — parallel sweep orchestration
 
-You coordinate assignments, workers, deterministic passes, and reporting. Delegate
-sweeps when the host supports workers; use the sequential fallback below otherwise.
+You are the orchestrator. You do not sweep anything yourself. You assign cells, fan out
+subagents, run the deterministic passes, and report.
 
 ## Step 1 — Decide the size of the batch
 
 If Nathan gave a number, use it. If not, default to **24 cells**.
 
-Use waves of **up to 6 concurrent workers**, reduced to the host's available capacity.
-Keep one cell per worker. On a host with three worker slots, 24 cells takes eight waves.
-If delegation is unavailable, report that limitation and process one assigned cell at a
-time using the same skill and ownership rules.
+Cells are swept in **waves of 4 concurrent subagents**. 24 cells is six waves.
+
+Four, not more. WebSearch has a per-session budget (roughly 200 queries) shared across every
+subagent you spawn, so wider waves exhaust it and the later cells come back empty having
+spent tokens for nothing. Wide waves also produce rate-limit failures and interleaved tool
+output without finishing meaningfully faster. If sweepers report budget exhaustion, narrow
+the wave further rather than launching more.
 
 If he asked to run until a limit ("keep going for an hour", "until I run low"), keep
 launching waves and report progress after each, stopping when the limit is reached or when
-three consecutive completed waves yield zero stubs — report this as a signal to inspect
-the frontier policy, not proof that the sector has no useful work. Failed or partial waves
-do not count as zero-yield waves. Clarify vague limits such as "until I run low" before
-starting. Use host measurements for usage limits; if a hard limit cannot be enforced,
-resolve an alternative with Nathan before launching budgeted work.
+three consecutive waves yield zero stubs — the latter means the frontier policy is feeding
+you dead territory and is worth a human look.
 
 ## Step 2 — Pull the assignments
 
 ```bash
-python3 scripts/next_cells.py --count <N>
+python3 scripts/next_cells.py --count <N> --claim <date>-<orchestrator>-batch
 ```
 
-Before selection, confirm no other coordinator is running in this checkout. The selector
-does not reserve cells. Run `python3 scripts/rollup_cells.py` if previous sweeps have
-finished but their ledger records have not been rolled up.
+**Always pass `--claim`.** `cells.jsonl` is not rolled up until the batch ends, so without a
+claim every orchestrator that asks gets handed the same never-swept cells — and if a second
+runner (another Claude Code session, Codex) is working the same repo, you will both sweep
+the same cells and waste the wave. Claims expire after 6 hours; use `--ignore-claims` only
+to recover cells abandoned by a batch that died.
 
-Take the whole list at once, before launching anything. Never let workers select cells
-themselves. If Nathan supplied explicit cells, preserve those assignments. For a continued
-run, finish and roll up each bounded batch before selecting the next; exclude cells already
-assigned in this run.
+Take the whole list at once, before launching anything. Never let subagents call
+`next_cells.py` themselves — they would each get overlapping selections.
 
 ## Step 3 — Fan out
 
-In Claude Code, use the named `niche-sweeper` agent. In Codex, use available native
-subagent tools and explicitly pass the repository root, canonical `niche-sweep/SKILL.md`
-path, and the worker rules below. Do not assume Claude's `Task`, tool allowlist, or
-`model: sonnet` configuration is available in Codex. Use the host's configured model unless
-Nathan specified another. Launch independent workers concurrently within the available slots.
+For each wave, spawn `niche-sweeper` subagents **in parallel** — all Task calls for a wave
+in a single message, not one after another. One cell per subagent. Nothing is gained by
+giving a subagent two cells; the isolation is the point.
 
 Each subagent prompt should be minimal:
 
-> Sweep frontier cell `<cell_id>` using `.claude/skills/niche-sweep/SKILL.md`.
-> Agent id: `<run-id>-sweep-<n>`. Work from the repository root. Create only your own new
-> idea files; never overwrite an existing slug. Report near-matches and proposed evidence
-> to the coordinator. Append your ledger record with `ledger_append.py`. Do not run
-> rollup, index generation, or git. Return slugs, jobs, matches, source types, and failures.
+> Sweep frontier cell `<cell_id>` using the niche-sweep skill. Agent id: `sweep-<n>`.
+> You are running inside a batch: on a dedup near-match, report it and do not edit the
+> existing file.
 
-Wait for every worker in the wave, recording completion or failure by cell. Do not
-record failed cells as completed empty sweeps. Before retrying, inspect any partial files
-and ledger entries to avoid duplicate records. Run the aggregate passes after all waves
-in this bounded batch finish.
+That last line is not optional. Sweepers running concurrently have no locking, so two of
+them independently matching the same canonical file would both write to it and one update
+would be lost. In a batch, **you** resolve near-matches in Step 4, single-threaded.
 
-Prefer workers sharing this checkout under one coordinator. Workers must not mutate
-existing ideas, even to append evidence. Similar discoveries can propose the same slug;
-never overwrite a file that already exists. If the host requires isolated worktrees,
-collect and reconcile their outputs before generating shared state or reporting completion.
+Wait for the whole wave to return before launching the next. Do not run the deterministic
+passes between waves.
+
+**Do not use `isolation: worktree`.** Each sweeper writes only files it creates, so there is
+nothing to collide over, and worktrees would scatter the idea files across branches that
+then need merging.
 
 ## Step 4 — Deterministic passes, once, after all waves
 
@@ -73,28 +70,47 @@ In this order, single-threaded:
 ```bash
 python3 scripts/dedup.py --sweep
 python3 scripts/verify_sources.py --unverified-only
-# Resolve reported pairs and verify every changed canonical idea with --slug <slug>.
 python3 scripts/rollup_cells.py
 python3 scripts/build_index.py
+python3 scripts/release_cells.py --agent <your-id> <every cell you were assigned>
 ```
+
+Release every cell you claimed, including ones that yielded nothing. Claims otherwise block
+reselection for their full 6-hour TTL, so a batch that finishes in forty minutes leaves the
+frontier artificially narrow for another five hours — and the other coordinator feels it.
 
 If `verify_sources.py` aborts with an environment error, stop and surface it. Do not retry
 with `--offline` to get past it — that records unverified sources as verified.
 
 Resolve any near-duplicate pairs `dedup.py --sweep` reports: read both files, and either
 merge the evidence into the older one and set the newer to `status: duplicate`, or leave
-both and say why they are actually distinct. Incorporate worker-reported near-match
-evidence here. `dedup.py --sweep` reports pairs; it does not merge files. Re-run
-`verify_sources.py --slug <slug>` for each canonical idea whose evidence changed, even if
-it already has an evidence tier. Complete these resolutions before rollup and index generation.
+both and say why they are actually distinct.
 
-## Step 5 — Save the batch
+## Step 5 — Commit this batch's work only
 
-When committing or pushing is included in the task or established authorization, review
-the diff and stage only this batch's changes. Preserve unrelated pre-existing edits,
-including edits in shared files; use selective staging when needed. Commit with a summary
-of completed cells and stubs, and push only when authorized. Otherwise leave the outputs
-ready for review and report their paths. Never stage the entire dirty repository blindly.
+Another coordinator may be running against this repo at the same time, with uncommitted
+edits in shared files. **Never `git add -A`.** Stage only the paths this batch produced:
+
+**Never stage `ideas/` or `merged/` wholesale either.** Another coordinator writes into
+those same directories, so a directory-level add sweeps up its in-flight files — in a recent
+batch, 25 of 42 new idea files belonged to the other runner. Stage your own by name; you
+have every slug from your subagents' reports.
+
+```bash
+git add frontier/ledger.jsonl frontier/cells.jsonl INDEX.md
+git add ideas/<slug-1>.md ideas/<slug-2>.md          # only slugs your sweepers reported
+git add merged/<slug>.md                             # only if you created it
+git status            # read it before committing
+git commit -m "sweep batch: <N> cells, <M> stubs"
+```
+
+Check `git status` for anything unexpected still unstaged — scripts, skill files, config,
+and idea files you did not create. Those belong to someone else's in-flight work; leave them
+alone and mention them in your report.
+
+**Do not push.** Say the commit is ready and let Nathan push, or push only if he has asked
+you to in this session. An unprompted push in a repo with a live second coordinator
+publishes work nobody has reviewed.
 
 ## Step 6 — Report
 
