@@ -6,44 +6,48 @@ Frontier coverage: **30 / 1938** cells swept (1.5%)
 
 | status | count |
 |---|---|
-| sandbox | 51 |
+| demoted | 51 |
 
 ## Ideas
 
-### sandbox (51)
+### demoted (51)
 
 | slug | cell | score | tier | persistence |
 |---|---|---|---|---|
+| [brownfield-parcel-inventory-cross-database-reconciliation](ideas/brownfield-parcel-inventory-cross-database-reconciliation.md) | onet-11-9199.11 | 67 | 1 | genuinely-hard |
+| [automation-vendor-points-list-consolidation](ideas/automation-vendor-points-list-consolidation.md) | onet-17-2199.05 | 59 | 1 | genuinely-hard |
+| [insulation-rebate-documentation-assembly](ideas/insulation-rebate-documentation-assembly.md) | naics-238310 | 50 | 1 | incumbent-distribution |
+| [plc-commissioning-test-evidence-compilation](ideas/plc-commissioning-test-evidence-compilation.md) | onet-17-2199.05 | 50 | 1 | regulatory-moat |
+| [historic-house-museum-collections-data-reconciliation](ideas/historic-house-museum-collections-data-reconciliation.md) | naics-712120 | 45 | 1 | unattractive-economics |
+| [performing-arts-venue-technical-rider-reconciliation](ideas/performing-arts-venue-technical-rider-reconciliation.md) | naics-711311 | 44 | 1 | unattractive-economics |
+| [taxi-voucher-scrip-program-reconciliation](ideas/taxi-voucher-scrip-program-reconciliation.md) | onet-53-3054.00 | 39 | 1 | unattractive-economics |
+| [cable-copyright-statement-of-account-compilation](ideas/cable-copyright-statement-of-account-compilation.md) | naics-517112 | 38 | 1 | regulatory-moat |
+| [taxi-driver-dispatch-tax-ledger-reconciliation](ideas/taxi-driver-dispatch-tax-ledger-reconciliation.md) | onet-53-3054.00 | 38 | 1 | fragmented-buyer |
+| [grain-warehouse-monthly-regulatory-report-compilation](ideas/grain-warehouse-monthly-regulatory-report-compilation.md) | naics-493130 | 32 | 1 | unattractive-economics |
 | [adhesive-customer-compliance-request-packet-assembly](ideas/adhesive-customer-compliance-request-packet-assembly.md) | naics-325520 | – | 1 | – |
 | [adhesive-manufacturer-pfas-multi-portal-reporting](ideas/adhesive-manufacturer-pfas-multi-portal-reporting.md) | naics-325520 | – | 1 | – |
-| [apparel-retailer-chargeback-evidence-reconciliation](ideas/apparel-retailer-chargeback-evidence-reconciliation.md) | naics-414110 | – | 1 | – |
-| [automation-vendor-points-list-consolidation](ideas/automation-vendor-points-list-consolidation.md) | onet-17-2199.05 | – | 1 | – |
+| [apparel-retailer-chargeback-evidence-reconciliation](ideas/apparel-retailer-chargeback-evidence-reconciliation.md) | naics-414110 | 0 | 1 | – |
 | [brownfield-acres-grant-progress-reporting-reentry](ideas/brownfield-acres-grant-progress-reporting-reentry.md) | onet-11-9199.11 | – | 1 | – |
-| [brownfield-parcel-inventory-cross-database-reconciliation](ideas/brownfield-parcel-inventory-cross-database-reconciliation.md) | onet-11-9199.11 | – | 1 | – |
-| [cable-copyright-statement-of-account-compilation](ideas/cable-copyright-statement-of-account-compilation.md) | naics-517112 | – | 1 | – |
 | [carrier-bordereaux-reconciliation](ideas/carrier-bordereaux-reconciliation.md) | naics-524121 | – | 1 | – |
 | [carrier-commission-reconciliation-policy-billing-ledger](ideas/carrier-commission-reconciliation-policy-billing-ledger.md) | naics-524121 | – | 1 | – |
 | [carrier-siu-claim-investigation-multisystem-documentation](ideas/carrier-siu-claim-investigation-multisystem-documentation.md) | naics-524121 | – | 1 | – |
 | [chemical-batch-record-to-erp-rekey](ideas/chemical-batch-record-to-erp-rekey.md) | onet-51-8091.00 | – | 1 | – |
 | [childcare-ccfa-parent-fee-reconciliation](ideas/childcare-ccfa-parent-fee-reconciliation.md) | onet-11-9031.00 | – | 1 | – |
 | [church-gift-record-cross-system-reconciliation](ideas/church-gift-record-cross-system-reconciliation.md) | naics-813110 | – | 1 | – |
-| [clothing-wholesale-po-cross-system-processing](ideas/clothing-wholesale-po-cross-system-processing.md) | naics-414110 | – | 1 | – |
+| [clothing-wholesale-po-cross-system-processing](ideas/clothing-wholesale-po-cross-system-processing.md) | naics-414110 | 0 | 1 | – |
 | [commercial-landlord-cam-lease-rule-reconciliation](ideas/commercial-landlord-cam-lease-rule-reconciliation.md) | naics-531120 | – | 1 | – |
 | [commercial-underwriting-transaction-cross-system-entry](ideas/commercial-underwriting-transaction-cross-system-entry.md) | naics-524121 | – | 1 | – |
 | [corrugated-die-room-tooling-coordinator-rekey](ideas/corrugated-die-room-tooling-coordinator-rekey.md) | onet-51-4111.00 | – | 1 | – |
-| [directory-publisher-phone-verification-data-entry](ideas/directory-publisher-phone-verification-data-entry.md) | naics-511140 | – | 1 | – |
+| [directory-publisher-phone-verification-data-entry](ideas/directory-publisher-phone-verification-data-entry.md) | naics-511140 | 0 | 1 | – |
 | [dispatch-order-transmission-audit](ideas/dispatch-order-transmission-audit.md) | onet-43-5032.00 | – | 1 | – |
 | [drywall-takeoff-revision-change-order-reconciliation](ideas/drywall-takeoff-revision-change-order-reconciliation.md) | naics-238310 | – | 1 | – |
 | [foreign-language-study-abroad-syllabus-equivalency-review](ideas/foreign-language-study-abroad-syllabus-equivalency-review.md) | onet-25-1124.00 | – | 1 | – |
 | [foundry-heat-traceability-record-reconciliation](ideas/foundry-heat-traceability-record-reconciliation.md) | onet-51-4051.00 | – | 1 | – |
 | [freight-load-timestamp-pod-log-reconciliation](ideas/freight-load-timestamp-pod-log-reconciliation.md) | onet-43-5032.00 | – | 1 | – |
 | [grain-scale-ticket-to-settlement-reconciliation](ideas/grain-scale-ticket-to-settlement-reconciliation.md) | naics-493130 | – | 1 | – |
-| [grain-warehouse-monthly-regulatory-report-compilation](ideas/grain-warehouse-monthly-regulatory-report-compilation.md) | naics-493130 | – | 1 | – |
-| [historic-house-museum-collections-data-reconciliation](ideas/historic-house-museum-collections-data-reconciliation.md) | naics-712120 | – | 1 | – |
 | [historic-preservation-grant-volunteer-match-documentation](ideas/historic-preservation-grant-volunteer-match-documentation.md) | naics-712120 | – | 1 | – |
-| [insulation-rebate-documentation-assembly](ideas/insulation-rebate-documentation-assembly.md) | naics-238310 | – | 1 | – |
-| [landscape-bid-invitation-schedule-intake](ideas/landscape-bid-invitation-schedule-intake.md) | naics-561730 | – | 1 | – |
-| [landscape-pesticide-monthly-report-compilation](ideas/landscape-pesticide-monthly-report-compilation.md) | naics-561730 | – | 1 | – |
+| [landscape-bid-invitation-schedule-intake](ideas/landscape-bid-invitation-schedule-intake.md) | naics-561730 | 0 | 1 | – |
+| [landscape-pesticide-monthly-report-compilation](ideas/landscape-pesticide-monthly-report-compilation.md) | naics-561730 | 0 | 1 | – |
 | [language-placement-score-transfer-into-banner](ideas/language-placement-score-transfer-into-banner.md) | onet-25-1124.00 | – | 1 | – |
 | [law-firm-word-processing-center-document-formatting](ideas/law-firm-word-processing-center-document-formatting.md) | onet-43-9022.00 | – | 1 | – |
 | [literary-submission-rule-status-reconciliation](ideas/literary-submission-rule-status-reconciliation.md) | onet-27-3043.05 | – | 1 | – |
@@ -53,8 +57,6 @@ Frontier coverage: **30 / 1938** cells swept (1.5%)
 | [organic-grain-lot-folder-inventory-reconciliation](ideas/organic-grain-lot-folder-inventory-reconciliation.md) | naics-493130 | – | 1 | – |
 | [pc-policy-conversion-manual-rekey](ideas/pc-policy-conversion-manual-rekey.md) | naics-524121 | – | 1 | – |
 | [performing-arts-venue-box-office-settlement-reconciliation](ideas/performing-arts-venue-box-office-settlement-reconciliation.md) | naics-711311 | – | 1 | – |
-| [performing-arts-venue-technical-rider-reconciliation](ideas/performing-arts-venue-technical-rider-reconciliation.md) | naics-711311 | – | 1 | – |
-| [plc-commissioning-test-evidence-compilation](ideas/plc-commissioning-test-evidence-compilation.md) | onet-17-2199.05 | – | 1 | – |
 | [print-finishing-route-queue-reconciliation](ideas/print-finishing-route-queue-reconciliation.md) | onet-51-5113.00 | – | 1 | – |
 | [radiation-therapy-charge-review-before-ehr-export](ideas/radiation-therapy-charge-review-before-ehr-export.md) | onet-29-1124.00 | – | 1 | – |
 | [roustabout-field-ticket-to-accounting-rekey](ideas/roustabout-field-ticket-to-accounting-rekey.md) | onet-47-5071.00 | – | 1 | – |
@@ -62,7 +64,5 @@ Frontier coverage: **30 / 1938** cells swept (1.5%)
 | [securitization-abs-ee-filing-assembly](ideas/securitization-abs-ee-filing-assembly.md) | naics-526981 | – | 1 | – |
 | [securitization-trust-accounting-reconciliation](ideas/securitization-trust-accounting-reconciliation.md) | naics-526981 | – | 1 | – |
 | [self-published-author-royalty-statement-reconciliation](ideas/self-published-author-royalty-statement-reconciliation.md) | onet-27-3043.05 | – | 1 | – |
-| [taxi-driver-dispatch-tax-ledger-reconciliation](ideas/taxi-driver-dispatch-tax-ledger-reconciliation.md) | onet-53-3054.00 | – | 1 | – |
-| [taxi-voucher-scrip-program-reconciliation](ideas/taxi-voucher-scrip-program-reconciliation.md) | onet-53-3054.00 | – | 1 | – |
 | [toolroom-repair-job-handoff-tracking](ideas/toolroom-repair-job-handoff-tracking.md) | onet-51-4111.00 | – | 1 | – |
 

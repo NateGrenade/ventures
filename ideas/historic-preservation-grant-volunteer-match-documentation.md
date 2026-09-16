@@ -1,6 +1,6 @@
 ---
 slug: historic-preservation-grant-volunteer-match-documentation
-status: sandbox
+status: demoted
 cell_id: naics-712120
 created: 2026-09-15
 owner_agent: sweep-2
@@ -62,3 +62,25 @@ paperwork layer around a compliance requirement rather than a connection to a si
 software system, so the integration surface is generating the correct output document
 for each state SHPO's payment-request process, not an API — it would need per-state
 verification since HPF is federally funded but administered separately by each SHPO.
+
+## Evaluation & Scrutiny Log
+
+Demoted at triage: the described workflow — logging volunteer hours by person/date/activity,
+applying an hourly rate, calculating in-kind dollar value, and producing a supervisor-approved
+report for a grant funder — is already a mature software category with well more than three
+established players, several of which market this exact grant/in-kind-match use case. Query
+run: `volunteer hour tracking software grant in-kind match value reporting nonprofit`.
+Volgistics sells reporting to "understand volunteers' dollar value" and export to PDF/Excel
+(https://www.volgistics.com/blog/the-value-of-volunteer-time-everything-you-need-to-know/);
+Track It Forward publishes a dedicated guide on using its hour tracking and reports to win and
+report on grants
+(https://www.trackitforward.com/content/how-use-volunteer-time-tracking-volunteer-hours-get-grants);
+VolunteerHub sells hour tracking with kiosk/QR capture, admin approve-reject of self-reported
+entries, and printable hours histories for verification
+(https://volunteerhub.com/platform/volunteer-hour-tracking). Galaxy Digital, Better Impact
+and Alignmint occupy the same category. The only part of the job these do not already do is
+substituting the HPF-specific rate rule (federal minimum wage, or skilled labor capped at
+"120% of a General Schedule (GS) Federal employee at Grade 15, Step 10") for the customary
+Independent Sector rate, and emitting each SHPO's timesheet layout — a rate constant and a
+PDF template on top of a commodity product, not a business.
+https://home.nps.gov/subjects/historicpreservationfund/sample-documents-for-recipients-contractors.htm

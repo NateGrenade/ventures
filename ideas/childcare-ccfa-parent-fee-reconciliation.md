@@ -1,6 +1,6 @@
 ---
 slug: childcare-ccfa-parent-fee-reconciliation
-status: sandbox
+status: demoted
 cell_id: onet-11-9031.00
 created: 2026-09-15
 owner_agent: 2026-09-15-codex-24-resume-05
@@ -30,3 +30,7 @@ Nurtury's childcare administration workflow assigns a staff member weekly or mon
 ## Automation hypothesis
 
 SPECULATIVE. A provider-side reconciliation tool could compare authorized parent fees exported from CCFA with charges in Procare/current CCMS, match family identifiers and effective dates, and send exceptions to the enrollment team for approval. The buyer hypothesis is the childcare provider's administrative or finance lead. Feasibility depends on lawful export access, reliable identity matching, and confirmation that current CCMS integrations leave this specific reconciliation unresolved. The available evidence does not quantify time savings or establish unmet demand across providers.
+
+## Evaluation & Scrutiny Log
+
+Triage kill: only Nurtury's job posting independently describes the manual CCFA-to-CCMS reconciliation; the Massachusetts policy source establishes changing parent-fee rules but does not corroborate that workflow or an integration gap, leaving fewer than two independent sources for the claimed pain. https://www.jobtarget.com/jobs/jt-yuj4brg0iq/junior-accountant-for-non-profit-child-care-agency-boston-massachusetts

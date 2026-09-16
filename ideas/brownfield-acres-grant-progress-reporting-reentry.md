@@ -1,6 +1,6 @@
 ---
 slug: brownfield-acres-grant-progress-reporting-reentry
-status: sandbox
+status: demoted
 cell_id: onet-11-9199.11
 created: 2026-09-15
 owner_agent: sweep-15
@@ -57,3 +57,7 @@ spend on this. This depends on ACRES exposing a stable form structure or API sur
 2024 notice suggests EPA has only just begun adding prefill/electronic forms itself) and
 on grantees keeping internal records in a structured-enough format to map automatically;
 highly ad hoc internal tracking would limit how much of the re-entry step can be removed.
+
+## Evaluation & Scrutiny Log
+
+Demoted at triage: both citations are notices from EPA for the same information collection (EPA ICR 2104.10, OMB 2050-0192), so the idea has fewer than two independent sources. https://www.federalregister.gov/documents/2026/01/16/2026-00781/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-for

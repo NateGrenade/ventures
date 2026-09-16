@@ -1,6 +1,6 @@
 ---
 slug: carrier-commission-reconciliation-policy-billing-ledger
-status: sandbox
+status: demoted
 cell_id: naics-524121
 created: 2026-09-15
 owner_agent: sweep-16
@@ -53,3 +53,7 @@ differences between billing and ledger posting.
 Evidence here rests on a single job posting; this is a thinner finding than a
 typical sandbox candidate and should be treated as a lead for a second sweep
 pass rather than settled evidence.
+
+## Scrutiny decision
+
+Demoted at triage: the claimed workflow has only one source, so it fails the requirement for two independent sources.

@@ -1,6 +1,6 @@
 ---
 slug: carrier-siu-claim-investigation-multisystem-documentation
-status: sandbox
+status: demoted
 cell_id: naics-524121
 created: 2026-09-15
 owner_agent: 2026-09-15-codex-24-sweep-11
@@ -29,3 +29,7 @@ Carrier SIU investigators gather records, interview evidence, online research, a
 ## Automation hypothesis
 
 SPECULATIVE. An SIU documentation layer could assemble evidence from approved investigative sources, draft source-linked claim-note summaries, and synchronize approved outcomes across SIU and core claim systems. It would need strict access controls, defensible citations to underlying evidence, and human approval for fraud and coverage conclusions.
+
+## Scrutiny decision
+
+Demoted at triage: only the Allstate posting supports the specific SIU documentation workflow; the NAIC source provides broader claims-system context and therefore does not supply a second independent source for this job.

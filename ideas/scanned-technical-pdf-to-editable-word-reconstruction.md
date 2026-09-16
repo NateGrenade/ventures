@@ -1,6 +1,6 @@
 ---
 slug: scanned-technical-pdf-to-editable-word-reconstruction
-status: sandbox
+status: demoted
 cell_id: onet-43-9022.00
 created: 2026-09-15
 owner_agent: 2026-09-15-codex-24-sweep-07
@@ -30,3 +30,7 @@ Document conversion contractors retype and format non-editable scans as Microsof
 ## Automation hypothesis
 
 SPECULATIVE. A conversion workflow could combine layout-aware OCR with page-level confidence checks, rebuild formulas and tables as editable Word objects, and route only uncertain regions to a human reviewer. This depends on reliable reconstruction across mixed scripts and layouts and on producing Word files that match the buyer's formatting requirements.
+
+## Evaluation & Scrutiny Log
+
+Triage kill: scanned-PDF-to-editable-Word reconstruction is already a mature software category with three-plus established products covering the proposed job—Adobe Acrobat converts complicated scans to formatted Word with OCR and preserves tables (https://www.adobe.com/acrobat/how-to/pdf-to-word-doc-converter.html), ABBYY FineReader converts scans to Word while retaining layout and structure and includes OCR verification (https://help.abbyy.com/en-us/finereader/16/user_guide/overview/), and Mathpix converts technical PDFs to DOCX while preserving equations, tables, figures, and document structure (https://website.mathpix.com/pdf-to-docx).

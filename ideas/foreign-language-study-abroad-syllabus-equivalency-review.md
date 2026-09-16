@@ -1,6 +1,6 @@
 ---
 slug: foreign-language-study-abroad-syllabus-equivalency-review
-status: sandbox
+status: demoted
 cell_id: onet-25-1124.00
 created: 2026-09-15
 owner_agent: sweep-24
@@ -35,3 +35,37 @@ SPECULATIVE. A packet-preparation tool could check that each course has the requ
 ## Additional Evidence
 
 The resumed sweep matched its packet-routing finding to this existing slug at 0.48. The coordinator narrowed the job from academic document comparison to information handling and replaced the blanket integration claim with the documented DocuSign limitation. The original slug is retained; earlier evidence and wording remain in Git history and resume notes. Current local source vocabulary recognizes institutional operating procedures.
+
+## Evaluation & Scrutiny Log
+
+### Triage (`critic-scrutiny-20260915T204319Z-9`, 2026-09-15)
+
+**Demoted at triage — the manual workflow is already a mature software category with
+three-plus established players.** The job as written (collect the course syllabus/description,
+attach it to a transfer or study-abroad approval form, route it to the designated
+departmental faculty reviewer, record the approval, and track courses that changed between
+pre-approval and final enrollment) is the advertised feature set of the study-abroad and
+transfer-credit software category, not an unserved gap:
+
+- **Terra Dotta Course Approvals** — applicants select foreign courses, indicate home course
+  equivalents, select an approver, and submit an electronic course approval form; approvers
+  get an emailed link to view, amend, and set approve/deny status per request, which triggers
+  applicant notification. https://support.terradotta.com/hc/en-us/articles/360041350013-Study-Abroad-Course-Approvals
+  (Zendesk returned 403 to the fetch tool; content confirmed via the indexed article and the
+  product page https://www.terradotta.com/outgoing/)
+- **Via TRM (Via Global)** — reviewer/approver routing workflows, batch approvals, and
+  form/reminder automation for outgoing study abroad. https://www.viatrm.com/via-global
+- **CollegeSource TES** — Evaluation Tracker is a paperless workflow for recording transfer
+  credit evaluation decisions; TES/Transferology integration explicitly "eases the routing of
+  courses and proposed equivalencies to faculty for comment, revision, and approval."
+  https://collegesource.com/transfer-tools/tes/ and https://collegesource.com/tes-and-transferology/
+
+Queries run: "transfer credit course equivalency evaluation software higher education
+CollegeSource TES Transferology"; "study abroad management software Terra Dotta Via TRM
+course approval syllabus workflow".
+
+The idea file already carries its own counterevidence: UVA routes signatures and approved
+forms automatically through DocuSign as of Fall 2025, so even the un-platformed institution
+cited here has software on the handoff. What remains is the faculty's academic equivalency
+judgment, which the file itself excludes from scope. No full critique written; the kill is
+not close.

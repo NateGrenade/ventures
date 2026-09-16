@@ -1,6 +1,6 @@
 ---
 slug: freight-load-timestamp-pod-log-reconciliation
-status: sandbox
+status: demoted
 cell_id: onet-43-5032.00
 created: 2026-09-15
 owner_agent: 2026-09-15-codex-24-sweep-01
@@ -14,6 +14,7 @@ scores: {}
 human_verdict: null
 cost_usd: null
 source_count: 1
+demotion_reason: Fewer than two independent sources.
 ---
 
 # Freight Load Timestamp and POD Log Reconciliation

@@ -1,6 +1,6 @@
 ---
 slug: church-gift-record-cross-system-reconciliation
-status: sandbox
+status: demoted
 cell_id: naics-813110
 created: 2026-09-15
 owner_agent: 2026-09-15-codex-24-sweep-13
@@ -30,3 +30,36 @@ Church finance staff process and reconcile donations across online giving, donor
 ## Automation hypothesis
 
 SPECULATIVE. A reconciliation service could normalize gift batches from online and in-person channels, match donor identities across systems, map funds to ledger accounts, and present exceptions before posting balanced entries to accounting. This depends on stable exports or APIs, deterministic fund mappings, and controls that preserve segregation of duties and donor-level audit history.
+
+## Scrutiny decision
+
+Demoted at triage (critic-scrutiny-20260915T204319Z-8): giving-to-general-ledger sync with
+per-fund account mapping is already a mature software category with well over three
+established direct players, several of which ship it as a free bundled feature.
+[Tithely's QuickBooks Online integration](https://get.tithe.ly/blog/quickbooks-online-integration)
+posts giving daily "into your accounting records without anyone moving it there," maps
+"each Tithely fund ... at the QuickBooks income account it belongs to," covers card, ACH,
+pledge, event, and counted cash/check gifts, and explicitly replaces the "export a report →
+update a spreadsheet → enter a deposit" workflow — at no additional fee. The same job is
+sold directly by [Grain Ledger](https://grainledger.com/blog/best-accounting-software-for-churches)
+($70/mo, connects Tithely/Pushpay/Planning Center plus banks via Plaid), Aplos ($79/mo),
+IconCMO (~$42/mo for a 50-household church), Realm Accounting, SteepleMate (Intuit-certified,
+in the QuickBooks App Store), QBIS Sync for Planning Center Giving, Givebutter, and
+OnlineGiving.org.
+
+This also undercuts the idea's own lead evidence rather than supporting it. The practitioner
+source describes exporting Realm to CSV and importing into ACS — both Ministry Brands
+products, where [Realm Accounting posts online giving contributions automatically to the
+correct funds in the general ledger](https://grainledger.com/blog/best-accounting-software-for-churches).
+The manual CSV step there is a consequence of that church not buying the integrated module,
+not an unserved job. The remaining pain that is genuinely unautomated — cross-system donor
+identity matching for a church running a legacy donor CRM alongside a separate giving
+platform, as in the World Gospel Mission posting (Financial Edge + Raiser's Edge + Site
+Stacker) — is a Blackbaud-stack integration problem, a different and much smaller niche
+than the one stated in `job:`, and it is not rescued by this framing.
+
+Searches run: "church giving platform sync to accounting general ledger integration
+Tithe.ly Planning Center QuickBooks"; "church donation reconciliation software sync giving
+to QuickBooks automatically".
+
+No full critique written, per the triage rules in `niche-scrutiny` Step 1.

@@ -1,6 +1,6 @@
 ---
 slug: commercial-underwriting-transaction-cross-system-entry
-status: sandbox
+status: demoted
 cell_id: naics-524121
 created: 2026-09-15
 owner_agent: 2026-09-15-codex-24-sweep-11
@@ -29,3 +29,7 @@ Commercial-lines underwriting assistants turn policy documents and transaction r
 ## Automation hypothesis
 
 SPECULATIVE. A transaction assistant could extract policy-change facts and supporting documents, map them to the carrier's codes, populate each required system, and present discrepancies for approval. It would need line-specific rating and authority rules, reliable document classification, and an audit trail that shows which source supported every populated field.
+
+## Evaluation & Scrutiny Log
+
+- Triage (`critic-scrutiny-20260915T204319Z-8`): Demoted because this manual cross-system underwriting job is already a mature software category with at least three established players: [Guidewire UnderwritingCenter](https://www.guidewire.com/products/core-products/insurancesuite/underwritingcenter-insurance-underwriting-software), [Send Underwriting Workbench](https://send.technology/solutions/americas/), and [Duck Creek](https://www.duckcreek.com/product/agentic-applications/).

@@ -1,6 +1,6 @@
 ---
 slug: print-finishing-route-queue-reconciliation
-status: sandbox
+status: demoted
 cell_id: onet-51-5113.00
 created: 2026-09-15
 owner_agent: 2026-09-15-codex-24-sweep-15
@@ -31,3 +31,7 @@ Bindery leads and production managers continually decide which cutting, folding,
 ## Automation hypothesis
 
 SPECULATIVE. A lightweight floor-routing layer could link each physical job's barcode to its docket, current quantity, required finishing operations, waiting reasons, and due date; propose batches by compatible material and finish; and preserve overrides when a job is split, outsourced, rushed, or returned upstream. This depends on workers reliably scanning transitions and on integration with the shop's existing MIS; small shops' willingness to replace visible magnetic boards is unverified.
+
+## Evaluation & Scrutiny Log
+
+Triage kill (`critic-scrutiny-20260915T204319Z-print`): the proposed workflow is already a mature print-MIS category with at least three established direct players. PrintVis schedules predecessor/successor operations, shop-floor status changes, finishing work, subcontract transport, and partial-overlap quantities (https://learn.printvis.com/Legacy/Planning/PlanningUnits/); printIQ provides production boards, real-time digital job bags, route changes, finishing automation, barcode capture, due-date priority, and outsourced-work tracking (https://printiq.com/solutions/digital/ and https://printiq.com/products/enterprise/); and Avanti Slingshot provides print scheduling plus JDF connections to production and bindery systems (https://avantisystems.com/wp-content/uploads/2025/06/Avanti-ePS-Slingshot-CoreModules-June-2025.pdf-1.pdf and https://blog.avantisystems.com/print-mis-software-connectivity-integration). This meets the scrutiny rule for immediate demotion when three or more established products already perform the manual workflow.

@@ -1,6 +1,6 @@
 ---
 slug: cable-copyright-statement-of-account-compilation
-status: sandbox
+status: demoted
 cell_id: naics-517112
 created: 2026-09-15
 owner_agent: sweep-3
@@ -12,10 +12,26 @@ job: cable system regulatory/compliance staff manually compile subscriber counts
   Signal Equivalent calculation has no off-the-shelf tool.
 split_from: null
 evidence_tier: 1
-scores: {}
+buyer_role: VP/Director of Regulatory Affairs
+buyer_count: null
+annual_price_usd: null
+persistence: regulatory-moat
+scores:
+  pain_evidence: 1
+  buyer_clarity: 1
+  incumbent_gap: 3
+  reachability: 2
+  tractability: 1
+  replicability: 1
+  persistence_quality: 1
+  deal_economics: 0
 human_verdict: null
 cost_usd: null
 source_count: 4
+revenue_ceiling_usd: null
+composite: 38
+gate_pass: false
+scored_profile: balanced
 ---
 
 # Cable Copyright Statement of Account (SA3) Compilation
@@ -89,3 +105,70 @@ currently rely on spreadsheets and, per the association's own comments,
 outside legal advice to interpret the forms. Integration surface and
 willingness to pay by a fragmented population of small operators are both
 unverified and would need direct validation before this is worth building.
+
+## Evaluation & Scrutiny Log
+
+### Competition
+
+Queries run: `"SA3" cable copyright filing services`, `"Distant Signal
+Equivalent" software cable`, `Section 111 Statement of Account preparation
+service`, and `cable copyright royalty SA3 filing consultant`. No direct or
+adjacent product for compiling operator data into SA3E was found. The concrete
+substitutes are the Copyright Office's native Excel form and internal staff or
+outside legal advice: the Office requires the native SA3E workbook to be emailed
+one filing at a time, while ACA says understanding the amount due and completing
+the forms often requires legal advice. No public price for that outside support
+was found. Sources:
+https://www.copyright.gov/licensing/sec_111.html and
+https://www.copyright.gov/docs/soaaudit/comments/06102013/American-Cable-Association.pdf
+
+### Buyer
+
+The plausible operational owner is a VP or Director of Regulatory Affairs. A
+New Jersey BPU cable-industry contact list identifies Charter's VP of State
+Regulatory Affairs and Comcast's Senior Director of Regulatory Affairs, but it
+does not establish that either role controls a software budget for federal
+copyright filings. Buyer clarity is therefore 1 rather than 2.
+https://www.nj.gov/bpu/bpu/pdf/boardorders/2020/20200520/5-20-20-LSA.pdf
+
+### Deal economics
+
+`buyer_count` is undetermined. The FCC reports about 420 U.S. cable companies and
+4,139 cable systems, and ACA Connects aggregates approximately 500 independent
+operators and municipalities, but neither source identifies how many separate
+buying organizations file the revenue-thresholded SA3 rather than SA1-2. Applying
+an SA3 share would be an unsupported size cut. Confidence in any usable count is
+low. Sources: https://docs.fcc.gov/public/attachments/FCC-24-2A1.pdf and
+https://acaconnects.org/about/
+
+`annual_price_usd` is also undetermined. The current $725 SA3 filing fee is a
+government charge, not evidence of what operators pay for compilation software,
+and the burden sources do not quantify per-filing labor or outside-counsel spend.
+https://www.copyright.gov/licensing/fees.html
+
+### Replicability and technical barrier
+
+The Copyright Office's mandatory native Excel SA3E form supplies a common output
+format and shared calculation logic. No reviewed source supports the candidate's
+claim that billing and headend systems lack suitable exports, identifies a common
+input format, or names a billing/headend vendor with meaningful market share.
+Customer-specific mappings therefore remain likely, so replicability is 1.
+Because access to the raw billing and carriage data is unestablished,
+tractability is also 1 despite the standard output workbook.
+https://www.copyright.gov/licensing/sec_111.html
+
+### Evidence verification
+
+The Copyright Office page confirms semiannual Section 111 filing, the SA3 revenue
+threshold, and mandatory native-Excel submission. ACA's 2013 comments confirm
+that the royalty structure is burdensome and can require many hours and legal
+advice. Neither source confirms the proposed cross-system connector gap, so that
+claim was excluded from scoring. The two sources are independent as publisher
+and practitioner association, though the ACA document is hosted by the Office.
+
+### Persistence hypothesis
+
+**regulatory-moat.** The evidence attributes persistence to a complex royalty
+structure and the need for legal interpretation. The 2025 native-Excel mandate
+standardizes submission, but it does not show that extraction from operator
+systems has recently become feasible, so `recently-unlocked` is unsupported.

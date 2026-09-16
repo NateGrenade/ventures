@@ -1,6 +1,6 @@
 ---
 slug: corrugated-die-room-tooling-coordinator-rekey
-status: sandbox
+status: demoted
 cell_id: onet-51-4111.00
 created: 2026-09-15
 owner_agent: sweep-21b
@@ -33,3 +33,7 @@ SPECULATIVE. A tooling-intake application could capture an identifier and locati
 ## Additional Evidence
 
 The resumed tool-and-die sweep supplied the two direct employer postings above. They replace expired or blocked mirrors and clarify that current corroboration comes from one employer. Earlier citations and claims remain in Git history and the batch's resume notes. No new idea was created for this match.
+
+## Evaluation & Scrutiny Log
+
+Triage: Demoted because the idea has fewer than two independent sources: both cited postings are from Pratt Industries, and the file itself identifies them as two sites of one employer.

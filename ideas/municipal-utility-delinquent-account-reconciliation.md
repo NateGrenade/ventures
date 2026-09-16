@@ -1,6 +1,6 @@
 ---
 slug: municipal-utility-delinquent-account-reconciliation
-status: sandbox
+status: demoted
 cell_id: onet-43-3011.00
 created: 2026-09-14
 owner_agent: manual-1
@@ -70,3 +70,14 @@ billing platform each municipality runs (varies widely, often decades old)
 and match the collection agency's proprietary flat-file spec per contract —
 this looks more like a services-heavy, per-customer integration business
 than a horizontal SaaS product, at least initially.
+
+## Evaluation & Scrutiny Log
+
+Triage kill: this manual workflow is already a mature software category with
+three-plus established players. Muni-Link automates delinquent-account
+identification, notices, tracking, and payment-triggered service-order updates
+(https://muni-link.com/features/billing/); TownCloud combines centralized cash
+receipting, balancing, reconciliation, and configurable delinquency processing
+(https://towncloud.com/products/services-revenue/); and OpenGov combines utility
+billing, a unified reconciliation dashboard, and delinquency tracking and
+follow-up (https://opengov.com/products/tax-and-revenue/flexible-billing-collection/).

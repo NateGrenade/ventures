@@ -1,6 +1,6 @@
 ---
 slug: commercial-landlord-cam-lease-rule-reconciliation
-status: sandbox
+status: demoted
 cell_id: naics-531120
 created: 2026-09-15
 owner_agent: 2026-09-15-codex-24-resume-06
@@ -30,3 +30,7 @@ A commercial property accountant describes preparing annual common-area maintena
 ## Automation hypothesis
 
 SPECULATIVE. The proposed buyer is a commercial landlord or its accounting lead. A reconciliation assistant could accept building income-statement exports, tenant payment records and lease documents; propose expense pools, exclusions, caps and occupancy allocations with links to supporting clauses; and produce reviewed tenant statements and an MRI-compatible import. The unresolved question is whether the burden comes from missing configuration, lost prior workbooks or inconsistent lease interpretation. Existing property software may already handle the arithmetic once properly configured. The candidate would need to reduce setup and review work while keeping an accountant responsible for approving lease interpretations.
+
+## Evaluation & Scrutiny Log
+
+Triage kill — CAM reconciliation is already a mature software category: [Yardi Breeze](https://www.yardi.com/blog/cam-reconciliations/), [MRI Commercial Management](https://www.mrisoftware.com/blog/managing-real-estate-expense-recoveries-retail/), [RealPage Commercial](https://www.realpage.com/commercial/commercial-property-management/), and [Kardin](https://www.kardin.com/cam-reconciliation) each advertise automation of lease-level expense pools, recoveries, or annual CAM reconciliation.

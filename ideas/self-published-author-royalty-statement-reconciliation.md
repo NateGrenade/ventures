@@ -1,6 +1,6 @@
 ---
 slug: self-published-author-royalty-statement-reconciliation
-status: sandbox
+status: demoted
 cell_id: onet-27-3043.05
 created: 2026-09-15
 owner_agent: sweep-11b
@@ -72,3 +72,32 @@ on individual authors' willingness to pay for something narrower and cheaper
 than the existing publisher-grade tools (Royalties HQ, Familiar) that already
 serve this exact need at a higher price point; that willingness to pay for a
 consumer-grade version at low sales volumes is unverified.
+
+## Scrutiny decision
+
+Demoted at triage on two independent triage criteria.
+
+**Mature software category, three-plus established players doing this exact job at this
+exact price point.** [ScribeCount](https://scribecount.com/pricing) consolidates royalty
+data from "all 40+ publishing platforms" — KDP, Apple Books, Draft2Digital, Smashwords,
+plus Shopify/WooCommerce/BookFunnel direct sales — and its entry tier is **$5.99/month for
+authors earning under $500/month**, which is precisely the low-volume indie the automation
+hypothesis proposes to serve as an underserved segment. [Book Report](https://www.getbookreport.com/)
+is free to authors earning under $1,000/month. [ScribeCount is reviewed head-to-head
+against Book Report](https://kindlepreneur.com/scribecount-review/) in the indie-author
+trade press, i.e. this is a category with comparison shopping, not a gap. The idea file
+itself already names Royalties HQ, Familiar, and PublishDrive's Abacus and concedes they
+"already serve this exact need"; the only differentiation offered is a lower price, and
+ScribeCount's income-scaled $5.99 tier removes even that.
+
+**No buyer role with budget authority.** The buyer is an individual self-published author
+spending personal money, with a demonstrated market price of $0–$6/month. There is no role
+holding a budget line for this, and the residual willing-to-pay pool sits below incumbents'
+existing free tier.
+
+Recorded for the record, not as the kill reason: the evidence is stale and one tag is
+inflated. Three of four sources date to 2014, 2018, and 2019 — before ScribeCount and Book
+Report matured — and the one current source is tagged `trade-press` but is
+[a vendor's own marketing blog](https://blog.publiwrite.com/royalties-in-2025-which-platforms-pay-authors-best-and-why-transparency-matters/),
+which is the "vendor's framing in different words" triage criterion. `evidence_tier: 1` is
+not supported.

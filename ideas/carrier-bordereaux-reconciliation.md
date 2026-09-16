@@ -1,6 +1,6 @@
 ---
 slug: carrier-bordereaux-reconciliation
-status: sandbox
+status: demoted
 cell_id: naics-524121
 created: 2026-09-15
 owner_agent: sweep-16
@@ -56,3 +56,7 @@ policy or claim reference, and surface only genuine exceptions (missing records,
 duplicate entries, amount mismatches) for analyst review. It would need durable
 per-counterparty format mappings, tolerance rules for timing differences, and an
 audit trail suitable for settlement disputes with MGAs and reinsurers.
+
+## Scrutiny decision
+
+Demoted at triage: bordereaux ingestion, normalization, validation, and reconciliation are already a mature software category served directly by [VIPR INTRALI](https://www.viprsolutions.com/news/delegated-data-manger-to-exit-london-market), [Xceedance Bordereaux Management](https://www.xceedance.com/what-we-do/data-analytics/insurance-data-and-modeling-platforms/xceedance-bordereaux-management/), and [Appian's reinsurance automation](https://appian.com/fr/industries/insurance/re-insurance).

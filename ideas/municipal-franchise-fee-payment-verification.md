@@ -1,6 +1,6 @@
 ---
 slug: municipal-franchise-fee-payment-verification
-status: sandbox
+status: demoted
 cell_id: naics-517112
 created: 2026-09-15
 owner_agent: sweep-3
@@ -83,3 +83,16 @@ and would need to be repeated per state regulator's data format, so the
 integration surface is state-specific and would need validation against at
 least a second state's PUC/franchising-authority reporting format before
 assuming it generalizes beyond Texas.
+
+## Evaluation & Scrutiny Log
+
+Triage kill: franchise-fee verification and recovery is already a mature service
+category with three-plus established providers. Azavar combines technology and
+experts to reconcile expected and actual payments, Local Government Services has
+offered franchise-fee audits and billing-database reconciliation since 2002, and
+Cohen Law Group reports more than 20 years and 300 franchise-fee audits; GMA also
+offers a pooled compliance-audit service used by nearly 200 cities.
+https://www.azavar.com/compliance-audits
+https://www.localgovservices.com/
+https://www.cohenlawgroup.org/practice-areas/franchise-fee-audits-and-cable-compliance-reviews/
+https://www.gacities.com/services/telecommunications-and-right-of-way-management

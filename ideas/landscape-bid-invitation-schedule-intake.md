@@ -1,6 +1,6 @@
 ---
 slug: landscape-bid-invitation-schedule-intake
-status: sandbox
+status: demoted
 cell_id: naics-561730
 created: 2026-09-15
 owner_agent: 2026-09-15-codex-24-resume-07
@@ -9,10 +9,15 @@ job: Landscape estimators manually copy bid invitations from email, VBX and Proc
   schedule separately from invitation platforms and ProEst.
 split_from: null
 evidence_tier: 1
-scores: {}
+scores:
+  deal_economics: 0
 human_verdict: null
 cost_usd: null
 source_count: 3
+revenue_ceiling_usd: null
+composite: 0
+gate_pass: false
+scored_profile: balanced
 ---
 
 # Landscape Bid Invitation Schedule Intake
@@ -29,3 +34,31 @@ A commercial landscape estimator describes filtering incoming invitations, addin
 ## Automation hypothesis
 
 SPECULATIVE. A bid-intake assistant could extract project identifiers, locations and due dates from permitted invitation sources, propose deduplicated schedule rows and flag deadline changes for an estimator to approve. It would retain links to source plans and invitations. The buyer hypothesis is the landscape estimating manager. Email and spreadsheet access may suffice for a narrow prototype; portal access, duplicate-project matching and existing bid-management coverage remain unverified.
+
+## Scrutiny triage
+
+Demoted: subcontractor bid-invitation intake into a schedule/calendar is a mature software
+category with well more than three established direct players, and the automation hypothesis
+above restates their shipped product. ConstructConnect
+[Bid Center](https://www.constructconnect.com/products/bid-center) will "Automatically sync
+bid invites from ConstructConnect, iSqFt, and SmartBid into Bid Center. View them in a bid
+board or calendar format," plus "Forward bid invite emails, and they'll instantly appear in
+your Bid Center inbox" and calendar sync to Outlook or Google — and the page states "Bid
+Center is a free digital bid board," so the replacement for the Excel bid schedule is free.
+Autodesk [BuildingConnected](https://construction.autodesk.com/products/buildingconnected/)
+sells Bid Board Pro, whose
+[Bid Forwarding](https://support.buildingconnected.com/hc/en-us/categories/360000139093-Bid-Board)
+pulls details out of invitations received outside the platform into the Bid Board;
+[Downtobid](https://downtobid.com/blog/best-bid-board-software-subcontractors-2025)
+auto-captures invites from the inbox without forwarding. That is three-plus direct players
+before counting iSqFt, SmartBid, Pantera and STACK.
+
+The idea's own evidence points at the same conclusion: the
+[Maldonado junior-estimator posting](https://talents.vaia.com/companies/maldonado-nursery-landscaping-inc/austin/junior-landscape-estimator-93136834/)
+names PlanHub, ConstructConnect and Virtual Builder as the invitation sources, meaning this
+employer already subscribes to platforms that ship the bid board it is staffing by hand.
+Evidence otherwise rests on a single unidentified Reddit estimator plus one job posting
+republished by an aggregator — no measured hours, no error rate, and nothing establishing
+prevalence beyond one company. A contractor keeping the Excel schedule anyway is declining a
+free incumbent product, which is an incumbent-distribution problem rather than an unsolved
+one. No full critique written; killed at triage.

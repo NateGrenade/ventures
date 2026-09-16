@@ -1,6 +1,6 @@
 ---
 slug: language-placement-score-transfer-into-banner
-status: sandbox
+status: demoted
 cell_id: onet-25-1124.00
 created: 2026-09-15
 owner_agent: 2026-09-15-codex-24-resume-04
@@ -30,3 +30,39 @@ University of Montana advising staff manually enter introductory language placem
 ## Automation hypothesis
 
 SPECULATIVE. A language-program operations tool could import approved assessment results and proctoring flags, validate institution-specific score mappings and student identifiers, and prepare auditable SOATEST updates for staff approval. It would preserve academic decisions and route exceptions to staff. Viability depends on permitted assessment exports and Banner write access; neither has been verified. The buyer hypothesis is the language-program or advising operations owner. ECU's existing integration makes implementation differences and remaining staff workload essential questions before further investment.
+
+## Evaluation & Scrutiny Log
+
+### Triage (`critic-scrutiny-20260915T204319Z-9`, 2026-09-15)
+
+**Demoted at triage — the manual workflow is already a mature software category with
+three-plus established players, and one of them is the source assessment vendor itself.**
+Moving approved language placement results into the SIS test-score record is a shipped
+capability, not an unserved job:
+
+- **Emmersion (the WebCAPE vendor named in this idea's own job statement)** — the WebCAPE
+  product page states: "Seamlessly connect with your current workflow through our Enterprise
+  API and integrations, such as Banner." Verified by reading the page.
+  https://emmersion.ai/products/webcape/
+- **Avant Assessment (STAMP)** — sells a custom API for pushing testing data into systems
+  that support integration, with an onboarding process aimed at institutions whose SIS
+  supports Open API/JSON, plus third-party paths such as Ellevation.
+  https://www.avantassessment.com/integrations/api and https://www.avantassessment.com/en/integrations
+- **Ellucian Banner itself** — ships native bulk test-score loading via the Electronic
+  Prospect Load (SRTLOAD) with SSRSRIN matching and SRRPREL migration, documented as the
+  supported path for AP and other test-score tapes into student records.
+  https://fhdafiles.fhda.edu/downloads/eisDocs/STTapeLoadProcessing80WB.pdf
+
+Queries run: "WebCAPE placement test score automatic upload Banner SOATEST integration";
+"Banner SRTLOAD electronic test score load process placement scores automated"; "Avant STAMP
+placement test results API integration student information system university".
+
+The file's own counterevidence points the same way: East Carolina University already sends
+French/German/Spanish placement results to Banner automatically
+(https://foreign.ecu.edu/resources/placement-exams/). Montana's manual SOATEST entry is
+therefore best read as one institution's configuration choice within a solved category
+rather than a market. Secondary problems, not reached because the category kill is decisive:
+the buyer named ("language-program or advising operations owner") is a departmental role
+without SIS-integration budget, which sits with the registrar or IT, and the ceiling is a
+per-department micro-purchase at institutions that mostly already own the integration
+through their assessment contract. No full critique written.

@@ -1,6 +1,6 @@
 ---
 slug: securitization-trust-accounting-reconciliation
-status: sandbox
+status: demoted
 cell_id: naics-526981
 created: 2026-09-15
 owner_agent: sweep-22
@@ -104,3 +104,7 @@ distinct problem — different deliverable (SEC XML filing vs. internal/investor
 reconciliation) and plausibly a different buyer (compliance/legal vs.
 accounting ops) — and is not covered by this hypothesis; it would need its own
 investigation if pursued.
+
+## Evaluation & Scrutiny Log
+
+Triage kill: recurring securitization accounting and reconciliation is already served by at least three established platforms—[Moody’s ABS Suite and Recon](https://www.moodys.com/web/en/us/capabilities/structured-finance.html) cover structured-finance accounting and manager-to-trustee reconciliation, [TAO SecureHub](https://www.taosolutions.ca/securehub) covers data ingestion, accounting, bank reconciliation, and investor/regulatory reporting, and [S&P Global WSO](https://www.spglobal.com/market-intelligence/en/solutions/products/wso-software) covers loan administration, cash reconciliation, accounting interfaces, trustee cash management, and ABS vehicles—so this is a mature software category under the scrutiny triage rule.

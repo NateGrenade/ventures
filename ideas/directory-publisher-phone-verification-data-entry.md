@@ -1,6 +1,6 @@
 ---
 slug: directory-publisher-phone-verification-data-entry
-status: sandbox
+status: demoted
 cell_id: naics-511140
 created: 2026-09-15
 owner_agent: sweep-6
@@ -11,10 +11,15 @@ job: teleresearch associates at business-directory/mailing-list compilers manual
   phone conversation.
 split_from: null
 evidence_tier: 1
-scores: {}
+scores:
+  deal_economics: 0
 human_verdict: null
 cost_usd: null
 source_count: 2
+revenue_ceiling_usd: null
+composite: 0
+gate_pass: false
+scored_profile: balanced
 ---
 
 # Directory Publisher Phone-Verification Data Entry
@@ -64,3 +69,7 @@ directory compilers are already sensitive to response/completion rates on
 these campaigns. A partial (human-review-in-the-loop) product may be more
 realistic than full end-to-end automation given the accuracy bar (99%) these
 firms already hold themselves to.
+
+## Scrutiny triage
+
+Demoted: the two cited items are both Data Axle-originated accounts of Data Axle's own workflow, so they do not satisfy the two-independent-sources gate ([job posting](https://builtin.com/job/teleresearch-associate/7660820); [company news release](https://www.data-axle.com/about-us/news-media-coverage/infogroup-unleashes-all-in-one-solution-for-business-owners-everywhere/)).

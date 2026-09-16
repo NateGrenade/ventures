@@ -1,6 +1,6 @@
 ---
 slug: taxi-voucher-scrip-program-reconciliation
-status: sandbox
+status: demoted
 cell_id: onet-53-3054.00
 created: 2026-09-15
 owner_agent: sweep-17
@@ -11,10 +11,26 @@ job: Taxi company back-office staff collect paper senior/disability transportati
   taxi company's records and the agency's payment process.
 split_from: null
 evidence_tier: 1
-scores: {}
+buyer_role: public transit agency director of paratransit services
+buyer_count: null
+annual_price_usd: null
+persistence: unattractive-economics
+scores:
+  buyer_clarity: 2
+  pain_evidence: 2
+  persistence_quality: 0
+  replicability: 0
+  tractability: 2
+  incumbent_gap: 2
+  reachability: 2
+  deal_economics: 0
 human_verdict: null
 cost_usd: null
-source_count: 4
+source_count: 3
+revenue_ceiling_usd: null
+composite: 39
+gate_pass: false
+scored_profile: balanced
 ---
 
 # Taxi Voucher / Scrip Program Reconciliation
@@ -78,3 +94,31 @@ taxi operators per county) but fragmented across thousands of counties/transit
 districts nationally, each running its own bespoke paper process — a real
 constraint on total addressable market per deal, favoring a multi-tenant SaaS
 sold to transit agencies rather than to individual taxi companies.
+
+## Evaluation & Scrutiny Log
+
+### Evidence verification
+
+The 2016 Monterey-Salinas Transit procurement supports monthly collection and reimbursement of paper vouchers, but it is historical and its second evidence bullet is the same document rather than an independent source ([MST RFQ](https://mst.org/wp-content/media/MST-DRAFT-FINAL-TAXI-VOUCHER.pdf)). Current independent evidence confirms that paper scrip still exists in at least one large program: King County sells paper taxi-scrip books by mail or in person and riders hand the scrip to one of three participating taxi companies ([King County Metro](https://kingcounty.gov/en/dept/metro/fares-and-payment/reduced-fares/taxi-scrip)). The National Academies independently documents the old provider workflow in which taxi companies redeemed collected vouchers and explains that agencies moved to payment cards specifically to reduce voucher and invoice processing labor ([TCRP Research Report 239](https://nap.nationalacademies.org/resource/26860/TCRP239_300dpi.pdf)). These sources substantiate the historical manual job and one current paper program, but not the file's claim that hundreds of current programs use the same monthly operator reconciliation cycle.
+
+### Competition
+
+Searches run: `taxi voucher program software reimbursement claims transit agency vendor`; `paratransit taxi subsidy payment card platform transit agencies vendor`; `2025 taxi voucher program paper vouchers reimbursement taxi company`; `taxi voucher management software transit agency`.
+
+No product was found that scans and reconciles arbitrary paper taxi vouchers as its primary category. Several adjacent systems eliminate the paper job: Napa Valley Transit moved Taxi Scrip to PEX payment cards in September 2025 ([Vine Transit](https://vinetransit.com/taxi-scrip/)); Pace's current Taxi Access Program uses CabConnect-linked TAP cards and reimburses taxi providers from card transactions ([Pace TAP](https://www.pacebus.com/tap)); and Uber Transit Vouchers lets agencies set subsidy, geography, time, and usage limits digitally ([Uber Transit Vouchers](https://www.uber.com/ca/en/transit/vouchers/)). The National Academies report also describes bank-issued restricted cards and CabConnect's API link to taxi point-of-sale devices. These are adjacent incumbents and substitutes rather than direct paper-scanning products, supporting `incumbent_gap: 2`.
+
+### Buyer and deal economics
+
+The plausible buyer is the public transit agency director of paratransit services, who operates the subsidy program and can sponsor a fare-collection or claims procurement. Public agency pages make these buyers identifiable, but no registry was found that counts agencies still using paper taxi scrip and requiring operator-side monthly reconciliation. The reviewed sources show active paper scrip in King County and payment-card migrations elsewhere, so extrapolating "hundreds" would be unsupported. No public price for a comparable voucher-scanning service or defensible adjacent software line item was found. Both `buyer_count` and `annual_price_usd` remain null, leaving the revenue ceiling undetermined.
+
+### Replicability and technical barrier
+
+OCR plus a submission portal could reach a single agency's paper vouchers, so the workflow is technically self-contained enough for `tractability: 2`. Replicability fails because the sources show agency-specific eligibility, subsidy, trip-cap, participating-provider, voucher, and card rules; no common voucher schema or dominant paper-program vendor with documented share was found. Each agency would require its own claim rules and integrations, so `replicability: 0`.
+
+### Persistence
+
+`unattractive-economics`. Payment cards and existing payment platforms have already solved the administrative-labor problem for Napa, Mountain Line, and Pace, while the remaining verified paper example has only three participating taxi companies ([King County Metro](https://kingcounty.gov/en/dept/metro/fares-and-payment/reduced-fares/taxi-scrip); [TCRP Research Report 239](https://nap.nationalacademies.org/resource/26860/TCRP239_300dpi.pdf)). A bespoke portal for each residual low-volume program has weak economics compared with migrating the agency to a restricted payment-card system.
+
+### Decision
+
+Demote. The persistence tag is ineligible, the revenue ceiling is undetermined, and agency-specific voucher rules fail the replicability floor.

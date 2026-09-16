@@ -1,6 +1,6 @@
 ---
 slug: toolroom-repair-job-handoff-tracking
-status: sandbox
+status: demoted
 cell_id: onet-51-4111.00
 created: 2026-09-15
 owner_agent: 2026-09-15-codex-24-sweep-16
@@ -30,3 +30,7 @@ Toolroom supervisors coordinate mold, die, fixture, and repair jobs that move am
 ## Automation hypothesis
 
 SPECULATIVE. A shop-floor handoff tool could create one repair record per mold or die, attach the current drawing and traveler, capture each station transition with minimal input, and surface missing parts, blocked outside work, and overdue quality approval. This depends on an interface toolmakers will use during production and on linking the record to the shop's existing work-order identifier without duplicating closeout work.
+
+## Evaluation & Scrutiny Log
+
+Triage: Demoted because this is already a mature software category with three or more direct products: MoldTrax tracks mold and die maintenance, repairs, history, instructions, and status (https://www.moldtrax.com/software-intro); ToolStats tracks mold issues, maintenance history, costs, work, notifications, and shared records (https://www.plasticsmachinerymanufacturing.com/molds-tooling/article/21084994/latest-software-and-mobile-apps-keep-track-of-molds); CONDAMOS manages tool-service orders, drawings, repair stages, approvals, and live status (https://condamos.com/en/condamos-die-module/tsm/); and WorkPLAN has served mold and die makers since 2008 with planning, document management, and task-time capture (https://en.wikipedia.org/wiki/WorkPLAN).

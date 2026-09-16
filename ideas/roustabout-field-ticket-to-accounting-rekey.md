@@ -1,6 +1,6 @@
 ---
 slug: roustabout-field-ticket-to-accounting-rekey
-status: sandbox
+status: demoted
 cell_id: onet-47-5071.00
 created: 2026-09-15
 owner_agent: sweep-1
@@ -75,3 +75,11 @@ whom existing platforms are priced or scoped for larger fleets. This should
 be weighed against the fact that the core problem is already well served by
 Tier-3 vendor evidence only — no independent (non-vendor) confirmation of
 current unmet demand was found in this sweep.
+
+## Evaluation & Scrutiny Log
+
+Triage kill: electronic oilfield field-ticket capture through invoicing and
+QuickBooks is already a mature software category with at least three direct
+players: [RigER](https://riger.us/oilfield-invoicing-software/), [Engage
+Mobilize](https://www.engagemobilize.com/service-providers/), and
+[Spira](https://www.spiradata.com/field-ticketing-software).

@@ -1,6 +1,6 @@
 ---
 slug: adhesive-customer-compliance-request-packet-assembly
-status: sandbox
+status: demoted
 cell_id: naics-325520
 created: 2026-09-15
 owner_agent: 2026-09-15-codex-24-resume-03
@@ -54,3 +54,18 @@ produce a review-ready response or portal submission with source and version tra
 This depends on customer formats being sufficiently repeatable, on product and supplier data
 being available in structured form, and on a qualified product-stewardship reviewer retaining
 final responsibility for representations made to customers.
+
+## Scrutiny decision
+
+Demoted at triage: collecting customer/supplier declaration requests and generating IMDS
+submissions, compliance letters, and substance declarations is already a mature product-
+compliance software category with well past three established direct players — [Assent
+(supplier outreach and declaration collection)](https://www.assent.com/solutions/product-compliance/tsca-compliance-solution/),
+[iPoint (IMDS request, due-date, and reminder automation, integrating PLM/ERP/IMDS/BOMcheck)](https://www.ipoint-systems.com/solutions/imds/),
+[Sphera product compliance / BOMcheck shared declaration platform](https://sphera.com/solutions/product-stewardship/product-compliance-software/),
+[Enablon product stewardship (Wolters Kluwer)](https://www.wolterskluwer.com/en/solutions/enablon/product-stewardship-software),
+and [Source Intelligence, GreenSoft, and Makersite as listed in a 2026 buyer's guide](https://makersite.io/insights/7-product-compliance-solutions-for-manufacturers-in-2026/).
+The Matrix Adhesives posting that anchors this idea is itself explicit that the hire's job
+includes standing up regulatory software — the buyer's own stated plan is to purchase from
+that existing category, so the SharePoint/Excel state is acknowledged interim tooling
+rather than an unserved workflow.

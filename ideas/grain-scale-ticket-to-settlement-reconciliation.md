@@ -1,6 +1,6 @@
 ---
 slug: grain-scale-ticket-to-settlement-reconciliation
-status: sandbox
+status: demoted
 cell_id: naics-493130
 created: 2026-09-15
 owner_agent: 2026-09-15-codex-24-sweep-03
@@ -50,6 +50,47 @@ accounts, balance tickets at day end, and resolve inventory or settlement discre
   source corroborates recurring settlement and reconciliation work, not a particular
   software interface.
   https://www.farmerspridecoop.com/careers/grain-accounting-specialist
+
+## Triage (critic-scrutiny-20260915T204319Z-4, 2026-09-15)
+
+**Demoted at triage — mature software category with well over three established direct
+players.** Scale-ticket capture, contract entry, position/inventory reconciliation, and
+producer settlement *is* the grain-accounting ERP category, and has been for decades. No
+full critique written; the kill is not close.
+
+Direct incumbents verified by opening the vendor pages myself:
+
+- **AgVantage Grain** — "a premier system for grain elevators nationwide"; product line
+  includes Grain Scale Software ("keep trucks moving 24/7") and buying, selling and
+  settling grain. https://www.agvantage.com/products.html and
+  https://www.agvantage.com/products/grain.html (the grain page advertises a DPR).
+- **Greenstone Systems / AGRIS** — grain ERP that handles "inventory, streamline contracts
+  and settlements, and ensure accurate financial reporting" from one system of record;
+  marketed to grain originators, merchandisers and accountants.
+  https://greenstonesystems.com/agris/
+- **Levridge (Microsoft Dynamics 365)** — Commodity Accounting and Ag Sales modules for
+  cooperatives and grain elevators. https://www.levridge.com/
+- **Bushel** — scale tickets, contracts, settlements and producer payments, and ships
+  maintained integrations into both AGRIS and AgVantage.
+  https://bushelpowered.com/integrations/agris/ and
+  https://bushelpowered.com/integrations/agvantage/
+- **Vertical Software (Ceres)** — cloud grain facility software covering ticketing,
+  accounting, inventory and settlement. https://www.verticalsoftware.net/
+- **iRely** — grain origination software. https://irely.com/solutions/agribusiness-software/grain-origination-software/
+
+Queries run: `grain elevator accounting software scale ticket settlement producer
+payments`; `grain accounting software cooperative AgVantage AGRIS Greenstone Levridge
+scale tickets`; `AgVantage OR AGRIS OR "Vertical Software" OR Bushel grain software "state
+reports" warehouse examiner monthly stocks report generate`.
+
+The evidence in this file does not contradict that — it confirms it. Every cited posting
+describes a clerk working *inside* existing grain accounting software: Five Star
+"enters grain contracts and modifications into the accounting system," GROWMARK/Total
+Grain Marketing "explicitly requires entering scale tickets, contracts, and other
+documents into grain accounting software." The residual manual work is data entry and
+exception handling within a purchased system whose vendor sells the next increment of
+automation (Bushel Pay approves scale tickets straight to producer payment). That is a
+feature request for AgVantage or a Bushel integration, not a niche.
 
 ## Automation hypothesis
 

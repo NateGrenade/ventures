@@ -1,6 +1,6 @@
 ---
 slug: chemical-batch-record-to-erp-rekey
-status: sandbox
+status: demoted
 cell_id: onet-51-8091.00
 created: 2026-09-15
 owner_agent: 2026-09-15-codex-24-sweep-04
@@ -38,3 +38,7 @@ The bindery sweep (onet-51-5113.00, worker 2026-09-15-codex-24-sweep-15) reporte
 - [type: job-posting] (undated; accessed 2026-09-15) Runbeck's Bindery Operator posting requires reading job tickets and recording product counts and production times in its shop-floor data system. https://recruiting.paylocity.com/recruiting/jobs/Details/4013128/Runbeck-Election-Services-Inc/Bindery-Operator
 - [type: job-posting] (undated; accessed 2026-09-15) The Standard Group's Bindery Machine Operator posting requires accounting for materials and time worked against the appropriate jobs using Shop Floor Data Entry. https://standardgroup.com/careers-binderyoperator/
 - [type: practitioner] (2023-01-26) A printing practitioner describes bindery operators following paper tickets without computers near the cutters; proposed corrections include issuing new tickets, adding a terminal, and holding jobs with conflicting specifications. This corroborates the paper-to-system separation, rather than the amount of rekeying. https://www.reddit.com/r/CommercialPrinting/comments/10legxw/advice_on_how_to_reduce_mistakes_in_design/
+
+## Evaluation & Scrutiny Log
+
+Triage demotion (critic-scrutiny-20260915T204319Z-chemical): Electronic batch records with material capture and ERP integration are already a mature category with at least four established direct products: Siemens Opcenter Execution Process for chemical manufacturing (https://www.siemens.com/en-us/products/opcenter/execution/process/), Emerson Syncade (https://www.emerson.com/is/content/emerson/en/systems-and-software/deltav-manufacturing-execution-system-mes/product-data-sheets/documents/weigh-and-dispense-product-data-sheet.pdf), AVEVA Batch Management for fine chemicals (https://www.aveva.com/en/products/batch-management/), and Tulip Electronic Batch Records (https://tulip.co/blog/electronic-batch-records/).

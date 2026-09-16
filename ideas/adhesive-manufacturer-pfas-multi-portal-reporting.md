@@ -1,6 +1,6 @@
 ---
 slug: adhesive-manufacturer-pfas-multi-portal-reporting
-status: sandbox
+status: demoted
 cell_id: naics-325520
 created: 2026-09-15
 owner_agent: sweep-23
@@ -73,3 +73,37 @@ recoverable in some machine-readable form (historical records since 2011 may not
 on each state's format staying scriptable rather than requiring a live web form, and on
 manufacturers trusting an automated tool with data that carries regulatory liability if
 wrong.
+
+## Scrutiny decision
+
+Demoted at triage: multi-jurisdiction PFAS data compilation and reporting is already a
+mature software category with more than three established direct players, each naming
+TSCA Section 8(a)(7) and US state PFAS reporting explicitly —
+[Assent](https://www.assent.com/resources/pfas-compliance/pfas-reporting/) ("maintains
+records of substances present in parts and products in alignment with reporting
+requirements under TSCA Section 8(a)(7), as well as state-level PFAS regulations within
+the U.S.", and its materials reference Minnesota's PRISM),
+[Source Intelligence](https://www.sourceintelligence.com/solution/tsca) (TSCA solution
+that "ensures accurate submissions, including PFAS reporting under TSCA Section 8(a)(7)"),
+[3E PFAS Risk Management](https://www.3eco.com/3e-solutions/sustainability/pfas-risk-management/),
+and [Certivo](https://www.certivo.com/blog-details/pfas-compliance-software-2026-tsca-reach-state-reporting-guide),
+which markets BOM-level substance mapping with jurisdiction-specific reporting outputs and
+publishes a dedicated [Minnesota PRISM filing guide](https://www.certivo.com/blog-details/minnesota-pfas-reporting-the-complete-prism-filing-guide-for-2026).
+The remaining gap — pressing the submit button inside CDX or PRISM rather than producing
+the formatted data — is thin, and is the part that a regulatory signatory is least likely
+to delegate.
+
+Two secondary problems, recorded but not load-bearing for the kill:
+
+1. Buyer pool. The cell is NAICS 325520, where Census counts roughly 382 firms across 546
+   establishments ([SICCODE, citing US Census](https://siccode.com/naics-code/325520/adhesive-manufacturing));
+   after cutting to firms large enough to staff a product-stewardship function the
+   addressable count is on the order of a hundred, and serving the broader chemical
+   manufacturing base means competing head-on with the vendors above.
+2. Deadline-shaped demand. The federal obligation is a one-time historical look-back whose
+   submission window has now slipped repeatedly (November 2024 to July 2025 to the current
+   October 13, 2026 date, with a November 2025 proposed rule adding exemptions still
+   pending, per [EPA](https://www.epa.gov/assessing-and-managing-chemicals-under-tsca/tsca-section-8a7-reporting-and-recordkeeping)),
+   and Minnesota's PRISM deadline was extended to September 15, 2026
+   ([B&D](https://www.bdlaw.com/publications/minnesota-extends-pfas-in-products-reporting-deadline-to-september-15-2026/)).
+   Recurring revenue would rest on the annual state updates, not the federal event.

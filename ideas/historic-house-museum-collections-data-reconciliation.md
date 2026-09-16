@@ -1,6 +1,6 @@
 ---
 slug: historic-house-museum-collections-data-reconciliation
-status: sandbox
+status: demoted
 cell_id: naics-712120
 created: 2026-09-15
 owner_agent: sweep-2
@@ -11,10 +11,27 @@ job: Collections managers at historic house museums manually merge volunteer- an
   the system.
 split_from: null
 evidence_tier: 1
-scores: {}
+buyer_role: Executive Director of a small historic house museum (the part-time Collections
+  Manager who does the work does not hold a software budget)
+persistence: unattractive-economics
+buyer_count: 1300
+annual_price_usd: 300
+scores:
+  pain_evidence: 1
+  buyer_clarity: 1
+  incumbent_gap: 1
+  reachability: 2
+  tractability: 2
+  persistence_quality: 0
+  replicability: 2
+  deal_economics: 2
 human_verdict: null
 cost_usd: null
 source_count: 2
+revenue_ceiling_usd: 390000.0
+composite: 45
+gate_pass: false
+scored_profile: balanced
 ---
 
 # Historic House Museum Collections Data Reconciliation
@@ -58,3 +75,132 @@ tools — PastPerfect does not publish a public API, so the integration surface 
 likely have to be a file-format bridge (CSV/XML matching PastPerfect's import
 templates) rather than a live API connection. This would need validating against
 PastPerfect's actual import capabilities before being treated as tractable.
+
+## Evaluation & Scrutiny Log
+
+### Source verification (done first)
+
+Both sources open and were read directly.
+
+- **Putnam History Museum (Greater Hudson Heritage Network listings) — HOLDS.** The page
+  carries the listing and the quoted duty verbatim: "Merge intern and volunteer project
+  data into museum database, from Excel and Word documents," plus "Familiarity with
+  reconciling disparate databases" and "Experience in PastPerfect Software" as
+  qualifications, at "12-14 hrs/week, $25/hour."
+  https://www.greaterhudson.org/job-listings.html
+- **Wilton House Museum (Virginia Association of Museums) — PARTIALLY HOLDS, claim
+  downgraded.** The posting does confirm PastPerfect use ("Ensure accurate and thorough
+  documentation of all items in the collection using PastPerfect museum collection
+  software"), periodic inventory for location accuracy, and the $47,000–$60,000 salary.
+  It does **not** describe merging volunteer/intern Excel or Word data, and it does not
+  describe database reconciliation. It supervises interns and volunteers, which is not the
+  same claim. This source corroborates *PastPerfect prevalence and the existence of a paid
+  collections role*; it does not corroborate the manual merge job.
+  https://www.vamuseums.org/news/job-posting-collections-manager-and-archivist-wilton-house-museum
+
+Net effect: only **one** source describes the manual work asserted in the `job` field.
+`pain_evidence` scored 1 accordingly, not 2.
+
+### The premise is partly falsified
+
+The `job` field asserts "PastPerfect has no automated import or reconciliation path for
+data captured outside the system." The import half of that is **false**. PastPerfect ships
+a documented Import Data utility in Utilities, covering six destination tables (Objects,
+Photos, Archives, Library, Accessions, Contacts) and accepting dBase III–V, FoxPro 2.5–9.0,
+Excel 2 / Excel 5-95 / 97-2000-2007, and comma- and tab-delimited ASCII. Field mapping for
+Excel/ASCII is manual — the user drags fields so "the order of the fields on this screen
+matches the field order from the input file" — and text over 254 characters is truncated.
+https://museumsoftware.com/WebHelp/Chapters/PP5-25d.htm
+PastPerfect also publishes a how-to article for exactly this task.
+https://pastperfect.zendesk.com/hc/en-us/articles/360022847434-How-do-I-import-data-from-Excel-into-PastPerfect
+
+What survives of the premise is the *cleanup and field-alignment* labor before the import
+and the *reconciliation against existing catalog/location records* after it. That is real
+but is a smaller job than the one the idea was written around.
+
+### Competition
+
+Queries run: `PastPerfect museum software import Excel spreadsheet data import utility`;
+`PastPerfect pricing "Import Assistance" fee data entry service museum software cost per year`.
+
+- **Direct, and it is the incumbent itself (free):** the built-in Import Data utility above.
+  Any tool selling "get volunteer spreadsheets into PastPerfect" is competing with a feature
+  the buyer already owns.
+- **Direct, paid:** PastPerfect Data Conversion Services — "we can import your data for you
+  for a small fee," quoted per job from a data sample, billed separately from license and
+  annual support. https://museumsoftware.com/conversions.html
+- **Substitute, and the real one:** the part-time staffer. At Putnam the *entire role* is
+  12–14 hrs/week at $25/hr, roughly $16–18k/yr fully loaded for all duties, of which the
+  merge is a slice. The budget a tool could displace is a few hundred dollars a year.
+
+`incumbent_gap` = 1: one-to-two direct competitors serving the job adequately, one of which
+is bundled into the system the buyer already pays for.
+
+### Buyer
+
+The role doing the work is Collections Manager, and it is named in both postings — but at
+Putnam it is a 12–14 hr/week part-time position, and at a museum of that size the person who
+signs for software is the Executive Director. AASLH's 2022 National Census of History
+Organizations reports "More than 80 percent of private nonprofit history organizations
+report revenues of less than $200,000 per year." https://aaslh.org/2022-census/
+A budget holder exists, but it is not the pain holder, and it sits above them.
+`buyer_clarity` = 1.
+
+### Deal economics
+
+`buyer_count` = 1300. Derivation: AASLH's 2022 census identifies **21,588** history
+organizations in the US (https://aaslh.org/2022-census/). Cut 1: the same census puts >80%
+below $200k annual revenue, leaving roughly 4,300 with any plausible discretionary software
+budget. Cut 2: of those, the subset that both runs PastPerfect and generates enough
+volunteer/intern offline capture to have this problem — estimated at ~30%, giving ~1,300.
+**Confidence in the 30% figure: low.** It is the load-bearing assumption and it is an
+estimate, not a count; no roster of PastPerfect installations is public. I did not pad the
+count with the ~17,000 sub-$200k organizations, because they cannot buy.
+
+`annual_price_usd` = 300. Anchored to what this buyer already pays PastPerfect:
+$440/yr single-user support on the $870 desktop license, or $745–$2,245/yr hosting for Web
+Edition (20% less for AASLH institutional members). https://museumsoftware.com/pricing.html
+An add-on that removes part of one duty of a part-time role cannot credibly price at or
+above the core system's annual support, so $300/yr is the defensible ceiling.
+
+Ceiling ≈ $390k — this passes the $25k gate. Economics are not what kills this idea.
+
+### Replicability
+
+`replicability` = 2. There is one integration surface for a meaningful share of the segment:
+PastPerfect's documented import file format, identical across installations and specified in
+the vendor's own user guide (link above). Both verified postings independently name
+PastPerfect as the platform, and AASLH negotiates a member discount on it — evidence of
+sector penetration in exactly this buyer class. It is not a 3: the share evidence is a vendor
+self-claim plus two postings, not a measured install base, and CatalogIt, CollectiveAccess,
+Re:discovery Proficio and eHive all hold some of this segment.
+
+### Technical barrier
+
+`tractability` = 2, not 3. The surface is a **file-format bridge, not an API** — PastPerfect
+5 is a desktop application with no published API, and the import is a manual UI wizard that
+cannot be driven programmatically. A tool can generate a correctly ordered Excel/CSV for a
+human to feed through Utilities → Import. The reconciliation half is harder: comparing
+volunteer data against existing catalog and location records requires read access to the
+live database, which I could not establish for Web Edition. Constraints to design around:
+254-character field truncation, and that Condition Reports and Media attachments cannot be
+imported at all.
+
+### Persistence — `unattractive-economics`
+
+Why does this still exist in 2026? Not because the problem is unsolved: PastPerfect shipped
+an import utility years ago and sells a conversion service for the hard cases. It exists
+because the pain sits in institutions where >80% run on under $200k/yr and the affected role
+is a $16–18k/yr part-timer, so nobody — including PastPerfect, which already owns the
+relationship — has reason to build past the wizard. This is not `genuinely-hard`: messy
+spreadsheet normalization and record matching are solved problems with ordinary tooling. It
+is not `recently-unlocked` either; no capability change is the binding constraint, money is.
+`persistence_quality` = 0, which is an ineligible tag and a promotion gate failure.
+
+### Verdict
+
+Demote. Fails the persistence gate outright, and would be weak on incumbent_gap and
+buyer_clarity even if it did not. The most useful thing to salvage is the confirmation that
+PastPerfect is a genuine single-vendor chokepoint in a 21,588-organization sector — if a
+future idea finds a job in that sector where the buyer actually has money, the replicability
+story is already sourced here.

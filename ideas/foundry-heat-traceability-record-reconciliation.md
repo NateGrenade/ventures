@@ -1,6 +1,6 @@
 ---
 slug: foundry-heat-traceability-record-reconciliation
-status: sandbox
+status: demoted
 cell_id: onet-51-4051.00
 created: 2026-09-15
 owner_agent: 2026-09-15-codex-24-sweep-08
@@ -32,3 +32,7 @@ Metal-melting furnace operators maintain the information trail for each heat whi
 ## Automation hypothesis
 
 SPECULATIVE. A heat-record layer could combine production schedules, scale readings, furnace temperature data, spectrograph results, and operator confirmations under one heat number, then flag mismatches before material moves downstream. It would need dependable interfaces to the plant's tracking and laboratory systems plus usable offline or rugged shop-floor capture where direct instrumentation is unavailable.
+
+## Evaluation & Scrutiny Log
+
+Triage demotion: this is already a mature foundry ERP/MES category with at least three established direct vendors—B&L Odyssey has served metalcasters since 1976 and provides heat/lot tracking plus direct spectrometer import (https://www.blinfo.com/solutions/quality/heat-analysis-and-lot-tracking/; https://www.blinfo.com/about/newsroom/press-releases/odyssey-62-released/), Guardian says it has supplied foundry-specific ERP/MES for more than 30 years and its MES captures shop-floor data into serialization and traceability records (https://www.guardiansoft.com/a-foundry-specific-erp-mes-solution-is-key-for-metal-casting-success/), and Synchro reports a 50-year history while offering batch/melt traceability, spectrometer integration, and certification generation (https://synchroerp.com/; https://www.synchroerp.com/tour/quality-assurance-detail).

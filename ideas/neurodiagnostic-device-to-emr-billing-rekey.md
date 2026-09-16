@@ -1,6 +1,6 @@
 ---
 slug: neurodiagnostic-device-to-emr-billing-rekey
-status: sandbox
+status: demoted
 cell_id: onet-29-2099.01
 created: 2026-09-15
 owner_agent: sweep-4
@@ -68,3 +68,7 @@ Connect, Corepoint) or department-level champions rather than a top-down
 hospital IT sale. Whether the acquisition vendors expose any accessible
 export format (HL7, CSV, DICOM SR) versus a closed proprietary database is
 the key unresolved feasibility question.
+
+## Evaluation & Scrutiny Log
+
+Triage kill (critic-scrutiny-20260915T204319Z-neuro): The core premise is contradicted and the EMR-integration workflow is already a mature category: [Cadwell CadLink](https://www.cadwell.com/cadlink/), [Natus NeuroWorks](https://natus.com/neuro/neuroworks-eeg-software/), and [Nihon Kohden Neurofax/Neuropack](https://eu.nihonkohden.com/diagnostics-solutions) each advertise HL7 integration with hospital information or EMR systems; moreover, the [Ascension posting](https://www.aaet.info/job-postings/emg-ncv-technician/41) establishes use of AthenaHealth, Cerner, and Cadwell but not manual transfer among them, while the [Eisenhower posting](https://careers.eisenhowerhealth.org/jobs/polysomnographic-technologist-sleep-lab/) establishes a billing-charge duty but does not tie it to rekeying from acquisition software.

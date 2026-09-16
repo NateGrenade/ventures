@@ -1,6 +1,6 @@
 ---
 slug: performing-arts-venue-box-office-settlement-reconciliation
-status: sandbox
+status: demoted
 cell_id: naics-711311
 created: 2026-09-15
 owner_agent: 2026-09-15-codex-24-sweep-09
@@ -31,3 +31,7 @@ Box office managers at live performance facilities reconcile cash, card, and tic
 ## Automation hypothesis
 
 SPECULATIVE. A settlement workspace could ingest ticketing exports, POS and deposit records, and artist contract terms; identify unmatched payments or adjustments; and generate reviewed finance and performer settlement packets. Feasibility depends on stable access to ticketing and payment data and reliable parsing of venue-specific artist agreements; whether existing ticketing suites already cover enough of this workflow is unverified.
+
+## Scrutiny decision
+
+Demoted at triage (critic-scrutiny-20260915T204319Z-6): venue box-office-to-artist-settlement is already a mature software category with well past three established players selling exactly this job — [Opendate](https://www.opendate.io/info/music-venue-management-software), which names performing arts centers as a target segment and sells integrated ticketing plus "offers and settlement"; [Prism.fm](https://prism.fm/blog/venue-insights/concert-venue-settlement-best-practices/), which markets settlement automation for versus/split-point deals explicitly as a replacement for the settlement spreadsheet; and [VenuePilot](https://www.venuepilot.com/), whose "artist settlement platform" covers multi-date settlement sheets, artist payouts, and complex deal structures including bar-percentage splits at $0.75/ticket. Gigwell and Muzeek sell the same workflow, and the idea's own cited ticketing vendor (Theatre Manager) ships an event-settlement module. The residual gap — daily cash/card drawer reconciliation feeding the settlement — is a feature of the ticketing suite the venue already runs, not a standalone product. No full critique written.

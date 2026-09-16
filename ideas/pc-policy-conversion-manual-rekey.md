@@ -1,6 +1,6 @@
 ---
 slug: pc-policy-conversion-manual-rekey
-status: sandbox
+status: demoted
 cell_id: naics-524121
 created: 2026-09-15
 owner_agent: 2026-09-15-codex-24-sweep-11
@@ -30,3 +30,7 @@ Property and casualty carriers hire temporary conversion teams during acquisitio
 ## Automation hypothesis
 
 SPECULATIVE. A conversion workbench could map legacy records into the target policy schema, prefill conversion screens, compare source and target values, and route only ambiguous scenarios for human judgment. The product would need carrier-specific mappings, auditable validation, and safe handling of policy exceptions that cannot be inferred from structured fields.
+
+## Evaluation & Scrutiny Log
+
+- Triage (`critic-scrutiny-20260915T204319Z-8`): Demoted because policy-system conversion and migration is already a mature software-and-services category with at least three established players: [Equisoft](https://www.equisoft.com/services/data-migration-and-conversion), [Infosys](https://www.infosys.com/industries/insurance/industry-offerings/policy-migration-solution.html), and [UCT](https://www.uctcorp.com/services/data-migration).

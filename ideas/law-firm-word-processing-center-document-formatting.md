@@ -1,6 +1,6 @@
 ---
 slug: law-firm-word-processing-center-document-formatting
-status: sandbox
+status: demoted
 cell_id: onet-43-9022.00
 created: 2026-09-15
 owner_agent: sweep-12b
@@ -72,3 +72,7 @@ role. Feasibility depends on integrating with firm document-management systems
 operation, and on handling the wide variety of court-specific and firm-specific
 formatting rules reliably enough that a human reviewer is checking rather than
 rebuilding the document.
+
+## Evaluation & Scrutiny Log
+
+Triage kill: legal document production is already a mature software category with three-plus established products covering this exact job—Litera Draft automates numbering, styling, cross-references, TOCs, and jurisdiction-specific TOAs (https://www.litera.com/capabilities/draft), BigHand automates firm styles, numbering, and TOCs (https://www.bighand.com/en-gb/our-solutions/document-formatting-styling/), and Thomson Reuters Drafting Assistant supplies TOA building and court-rule format validation inside Word (https://www.thomsonreuters.com/content/dam/helpandsupp/en-us/Topics/drafting-assistant/files/user-guide-for-drafting-assistant.pdf); ILTA's technology survey also records adoption of Litera, BigHand, BEC LegalBar, Infoware Word LX, and other established alternatives (https://higherlogicdownload.s3.amazonaws.com/ILTANET/ce7f3e74-fb70-402e-a1b3-5dc0abe72260/UploadedFiles/pdZZ3jT6TSaA3uqL2USt_TechSurvey2021.pdf).
